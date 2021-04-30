@@ -1,15 +1,15 @@
 \chapter{\textit{Software} desenvolvido} \label{software}
 
-Esse apêndice é manual de instalação e uso dos \textit{plugins} e \textit{jupyter notebooks} desenvolvidos. Os \textit{plugins} foram desenvolvidos para o software geostatístico \textit{AR2GeMS}. Recomenda-se a instalação e uso da suite de \textit{plugins} em uma versão do \textit{AR2GeMS} que inclua um interpretador python e a biblioteca \textit{ar2gas} embarcados (\textit{ar2gems-full-version-python3}).
+Esse apêndice é manual de instalação e uso dos \textit{plugins} e \textit{jupyter notebooks} desenvolvidos. Os \textit{plugins} foram desenvolvidos para o software geostatístico \textit{SGeMS/AR2GeMS}. Recomenda-se a instalação e uso da suite de \textit{plugins} em uma versão do \textit{SGeMS/AR2GeMS} que inclua um interpretador python e a biblioteca \textit{ar2gas} embarcados (\textit{ar2gems-full-version-python3}).
 
-A suite de \textit{plugins} pode ser acessada no repositório: \url{https://github.com/robertorolo/LPM-Geomod_Suite}. Para instá-la primeiro deve-se instalar as seguintes dependências \textit{ar2gas}, \textit{numpy}, \textit{math}, \textit{itertools}, \textit{scipy}, \textit{pyevtk}, \textit{sklearn}, \textit{pyevtk}. O reposítório conta com o arquivo \textit{install\underline{ }dependencies.py} ao copiar, colar e executar o conteúdo do arquivo no interpretador python embarcado no diretório do \textit{AR2GeMS} as dependências (com exceção do \textit{ar2gas} que não pode ser encontrado no repositório PyPI) são automaticamente instaladas.
+A suite de \textit{plugins} pode ser acessada no repositório: \url{https://github.com/robertorolo/LPM-Geomod_Suite}. Para instá-la primeiro deve-se instalar as seguintes dependências \textit{ar2gas}, \textit{numpy}, \textit{math}, \textit{itertools}, \textit{scipy}, \textit{pyevtk}, \textit{sklearn}, \textit{pyevtk}. O reposítório conta com o arquivo \textit{install\underline{ }dependencies.py} ao copiar, colar e executar o conteúdo do arquivo no interpretador python embarcado no diretório do \textit{SGeMS/AR2GeMS} as dependências (com exceção do \textit{ar2gas} que não pode ser encontrado no repositório PyPI) são automaticamente instaladas.
 
-Então, os arquivos (do repositório) da pasta \textit{ui} devem ser copiados e colados na pasta do \textit{AR2GeMS} plugins/Geostat, os arquivos da pasta \textit{py} devem ser copiados e colados na pasta do \textit{AR2GeMS} plugins/Geostat/python, finalmente, o arquivo \textit{helpers.py} deve ser copiado e colado na pasta \textit{Lib} do \textit{AR2GeMS}. Uma versão do \textit{AR2GeMS} com a suite previamente instalada pode ser solicitada ao autor dessa tese.
+Então, os arquivos (do repositório) da pasta \textit{ui} devem ser copiados e colados na pasta do \textit{SGeMS/AR2GeMS} plugins/Geostat, os arquivos da pasta \textit{py} devem ser copiados e colados na pasta do \textit{SGeMS/AR2GeMS} plugins/Geostat/python, finalmente, o arquivo \textit{helpers.py} deve ser copiado e colado na pasta \textit{Lib} do \textit{SGeMS/AR2GeMS}. Uma versão do \textit{SGeMS/AR2GeMS} com a suite previamente instalada pode ser solicitada ao autor dessa tese.
 
 Caso a instalação tenha sido bem sucedida as \textit{plugins} serão mostrados no painel de algoritmos do \textit{software}, como mostrado na \autoref{algo_panel}.
 
 \begin{figure}[H]
-	\caption{\label{algo_panel} LPM-Geomod\underline{ }Suite no painel de algoritmos do \textit{AR2GeMS}.}
+	\caption{\label{algo_panel} LPM-Geomod\underline{ }Suite no painel de algoritmos do \textit{SGeMS/AR2GeMS}.}
 	\centering
 		\includegraphics[width=0.6\textwidth]{apendice/imagens/algorithms.PNG}
 \end{figure}
@@ -18,7 +18,7 @@ As próximas seções descrevem os diferentes \textit{plugins} e seus parâmtros
 
 \section{Transformações}
 
-A suite traz ferramentas para transformar variáveis em pontos ou blocos.
+A suite traz ferramentas para transformar variáveis em suporte de pontos ou blocos.
 
 \subsection{Em pontos}\label{pttrans_sec}
 
@@ -74,7 +74,7 @@ As propriedades interpoladas devem ser selecionadas em qualquer ordem, desde que
 
 Em \textit{refinment options} O usuário insere os parâmetros para o refinamento de contatos (\autoref{bound_ref}): quantas iterações, zero gera um modelo sem refinamento, e os parâmetros de \textit{downscaling} do \textit{grid}, ou seja, em quantas partes as células serão divididas em x, y, e z.
 
-Na aba \textit{variogram} o usuário insere os variogramas na mesma ordem que selecionou as variáveis interpoladas na aba anterior. Caso o usuário selecione a opção \textit{use variograms model file instead} ele deve carregar um arquivo de texto, como mostrado na \autoref{vario_model_txt}. O arquivo deve conter o número que representa cada categoria acompanhado do modelo variográfico em formato .xml, o mesmo formato usado pela ferramenta de variografia do \textit{AR2GemS}.
+Na aba \textit{variogram} o usuário insere os variogramas na mesma ordem que selecionou as variáveis interpoladas na aba anterior. Caso o usuário selecione a opção \textit{use variograms model file instead} ele deve carregar um arquivo de texto, como mostrado na \autoref{vario_model_txt}. O arquivo deve conter o número que representa cada categoria acompanhado do modelo variográfico em formato .xml, o mesmo formato usado pela ferramenta de variografia do \textit{SGeMS/AR2GeMS}.
 
 Caso um único variograma seja informado todas as categorias serão interpoladas com esse mesmo modelo. Caso nenhum variograma seja informado um modelo Gaussiano com um range igual a maior distância entre uma amostra codificada com aquele indicador e um nó do \textit{grid} é usado para cada uma das propriedades interpoladas selecionadas.
 
@@ -94,45 +94,72 @@ Caso um único variograma seja informado todas as categorias serão interpoladas
 
 \subsection{Máquina de vetores de suporte (SVM)}
 
-A metodologia proposta por \citeonline{smirnoff2008support}, que usa máquina de vetores de suporte (\textit{support vector machine}) para a criação de modelos geológicos determinísticos multi-categóricos, foi implementada na suite.
+A metodologia proposta por \citeonline{smirnoff2008support}, que usa máquina de vetores de suporte (\textit{support vector machine}) para a criação de modelos geológicos determinísticos multi-categóricos, foi implementada na suite a partir do \textit{plugin} SVM (\autoref{svm_plug}).
+
+Na aba \textit{general} (Figura \autoref{svm_gen}) o usuário seleciona a propriedade categórica, um \textit{grid} de estimativa e o nome da propriedade a ser criada.
+
+Na aba \textit{grid search} (Figura \autoref{svm_search}) o usuário seleciona os parâmetros que serão utilizados na função \textit{GridSearchCV} da biblioteca \textit{sklearn}. É necessário escolher valores mínimos e máximos para os hiper-parâmetros C e gamma e um número N de valores aleatórios que serão tomados nesse intervalo, combinados e testado e uma validação \textit{k-folds}. Os valores padrão são os melhores intervalos encontrados em um teste de sensibilidade de hiper-parâmetros realizado por \citeonline{smirnoff2008support}.
+
+Em N folds o usuário seleciona quantas \textit{folds} serão aplicadas na validação por \textit{kfolds}. Para o caso da Figura \autoref{svm_search} o algoritmo vai remover 20\% das amostras de forma aleatória do banco de dados cinco vezes e criar cinco bancos de dados de treino com 80\% das amostras e cinco banco de dados de teste correspondentes com 20\% das amostras. Então o algoritmo toma dez valores para C e dez valores para gamma aleatoriamente nos intervalos selecionados, esses valores são combinados para gerar 100 diferentes modelos SVM. Cada um desses modelos é treinado em cada um dos cinco bancos de dados de treino e testado em seu respectivo banco de dados de teste. Com os parâmetros que apresentarem o melhor \textit{score} de validação um modelo é trinado usando a totalidade dos dados e a predição das categorias é feita no grid.
 
 \begin{figure}[H] 
     \centering
-    \caption{Interface do \textit{plugin} \textit{svm}} \label{desvant}
-     \subfloat[][Aba \textit{general}.]{\includegraphics[width=.45\textwidth]{apendice/imagens/svm1.PNG}\label{<figure1>}}
+    \caption{Interface do \textit{plugin} \textit{svm}} \label{svm_plug}
+     \subfloat[][Aba \textit{general}.]{\includegraphics[width=.45\textwidth]{apendice/imagens/svm1.PNG}\label{svm_gen}}
      \hspace{1em}
-     \subfloat[][Aba \textit{grid search}.]{\includegraphics[width=.45\textwidth]{apendice/imagens/svm2.PNG}\label{<figure2>}}
+     \subfloat[][Aba \textit{grid search}.]{\includegraphics[width=.45\textwidth]{apendice/imagens/svm2.PNG}\label{svm_search}}
 \end{figure}
+
+A \autoref{jura_svm} mostra o modelo geológico criado para o banco de dados \textit{Swiss Jura} usando o \textit{plugin} desenvolvido com os valores padrão.
 
 \begin{figure}[H]
 	\centering
-	\caption{\label{svm_model}Modelo geológico para o dataset \textit{Swiss Jura} criado com máquina de vetores de suporte.}
+	\caption{\label{jura_svm}Modelo geológico para o dataset \textit{Swiss Jura} criado com máquina de vetores de suporte.}
 	\includegraphics[width=0.6\textwidth]{apendice/imagens/svmgeomodel.png}
 \end{figure}
 
 \section{Modelagem estocástica}
 
-\subsection{Parametrização do \textit{kernel}}
+Dos algoritmos desenvolvidos nessa tese dois deles (parametrização do suporte do \textit{kernel}) e avaliação de incerteza usando funções distâncias assinaladas e campos potenciais) foram implementados como \textit{plugins} para o \textit{SGeMS/AR2GeMS}. A simulação hierárquica de contatos, por ser bastante dependente de \textit{softwares} da biblioteca GSLib, foi implementando em \textit{jupyter notebooks} usando a biblioteca \textit{pygeostat}.
+
+\subsection{Parametrização do suporte \textit{kernel}}
+
+O \textit{plugin kernel\underline{ }factor\underline{ }uncertainty} (\autoref{kernel_plug}) implementa a metodologia proposta na \autoref{kernel_fac}. Na aba \textit{general} (Figura \autoref{kernel_gen}) o usuário seleciona o \textit{grid} de interpolação, as propriedades funções distância assinaladas e os parâmetros do método. Parametrização linear ou  quadrática deve ser selecionada, um valor de fmin otimista e um valor de fmin pessimista e o critério de aceitação de reprodução dos dados amostrais.
+
+Na aba \textit{kernel} (Figura \autoref{kernel_kernel}) é necessário selecionar os parâmetros dos \textit{kernels} para cada categoria. As funções Gaussiana e esférica estão disponíveis. Para os demais parâmetros, um único valor considera o mesmo para as múltiplas categorias, separando valores por vírgula, na mesma ordem que as distâncias assinaladas foram selecionadas na aba \textit{general} o algoritmo usará parâmetros diferentes para cada categoria. Selecionar o valor zero para o suporte fará com que o algoritmo calcule-o automaticamente como a maior distância entre uma amostra codificada com aquele indicador e um nó do \textit{grid}.
+
+A implementação da anisotropia ainda é um trabalho em progresso e necessita de testes e ajustes.
 
 \begin{figure}[H] 
     \centering
-    \caption{Interface do \textit{plugin} \textit{kernel\underline{ }factor\underline{ }uncertainty}.} \label{desvant}
-     \subfloat[][Aba \textit{general}.]{\includegraphics[width=.45\textwidth]{apendice/imagens/kf1.PNG}\label{<figure1>}}
+    \caption{Interface do \textit{plugin} \textit{kernel\underline{ }factor\underline{ }uncertainty}.} \label{kernel_plug}
+     \subfloat[][Aba \textit{general}.]{\includegraphics[width=.45\textwidth]{apendice/imagens/kf1.PNG}\label{kernel_gen}}
      \hspace{1em}
-     \subfloat[][Aba \textit{kernel}.]{\includegraphics[width=.45\textwidth]{apendice/imagens/kf2.PNG}\label{<figure2>}}
+     \subfloat[][Aba \textit{kernel}.]{\includegraphics[width=.45\textwidth]{apendice/imagens/kf2.PNG}\label{kernel_kernel}}
 \end{figure}
 
 \subsection{Avaliação de incerteza usando funções distâncias assinaladas e campos potenciais}
 
+O \textit{plugin boundary\underline{ }simulation\underline{ }pfields} (\autoref{pfields_plug}) implementa o método apresentado na \autoref{pfiels_sec}. Na aba \textit{general} (Figura \autoref{pfields_gen}) o suário deve informar o nome da propriedade que será criada, a largura da banda de incerteza e o parâmetro gamma (ou omega) que será usado na transformação das distâncias em probabilidades. Caso zero seja escolhido para o parâmetro gamma o algoritmo usará a maior distância absoluta estimada entre todas as categorias bloco a bloco.
+
+Na aba \textit{gaussian simulations} o usuário deve inserir as simulações Gaussianas que serão transformadas em campos de probabilidade e usadas para amostras as distribuições locais.
+
 \begin{figure}[H] 
     \centering
-    \caption{Interface do \textit{plugin} \textit{boundary\underline{ }simulation\underline{ }pfields}.} \label{desvant}
-     \subfloat[][Situação ideal, sem viés.]{\includegraphics[width=.45\textwidth]{apendice/imagens/bound_sim_pfields1.PNG}\label{<figure1>}}
+    \caption{Interface do \textit{plugin} \textit{boundary\underline{ }simulation\underline{ }pfields}.} \label{pfields_plug}
+     \subfloat[][Situação ideal, sem viés.]{\includegraphics[width=.45\textwidth]{apendice/imagens/bound_sim_pfields1.PNG}\label{pfields_gen}}
      \hspace{1em}
-     \subfloat[][Situação real, com viés conservador.]{\includegraphics[width=.45\textwidth]{apendice/imagens/bound_sim_pfields2.PNG}\label{<figure2>}}
+     \subfloat[][Situação real, com viés conservador.]{\includegraphics[width=.45\textwidth]{apendice/imagens/bound_sim_pfields2.PNG}\label{pfileds_gauss}}
 \end{figure}
 
 \subsection{Simulação de contatos hierárquica}
+
+Os \textit{jupyter notebooks} utilizados para a prova de conceito no banco de dados \textit{Swiss Jura} e no estudo de caso no banco de dados de cobre pórfiro apresentados na \autoref{hier_bound_sim} podem ser acessados no repositório: \url{https://github.com/robertorolo/hierarchical_boundary_simulation}. O repositório também conta com alguns módulos em Python necessários para aplicação do fluxo de trabalho.
+
+\begin{itemize}
+    \item Prova de conceito no \textit{Swiss Jura}:\url{https://github.com/robertorolo/hierarchical_boundary_simulation/blob/main/jura_case_study.ipynb}
+    \item Estudo de caso no cobre pórfiro: \url{https://github.com/robertorolo/hierarchical_boundary_simulation/blob/main/porphyr_copper_case_study.ipynb}
+\end{itemize}
 
 
 
