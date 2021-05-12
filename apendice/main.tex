@@ -152,6 +152,8 @@ Na aba \textit{gaussian simulations} o usuário deve inserir as simulações Gau
      \subfloat[][Situação real, com viés conservador.]{\includegraphics[width=.45\textwidth]{apendice/imagens/bound_sim_pfields2.PNG}\label{pfileds_gauss}}
 \end{figure}
 
+Se houver apenas uma categoria no banco de dados o algoritmo estandardiza o valor simulado entre [-bw,bw], onde bw é o valor escolhido para a banda de incerteza e compara, dentro da zona de incerteza, o valor simulado e o valor estimado. Os blocos são classificados de aocordo com a \autoref{comp_class}.
+
 \subsection{Simulação de contatos hierárquica}
 
 Os \textit{jupyter notebooks} utilizados para a prova de conceito no banco de dados \textit{Swiss Jura} e no estudo de caso no banco de dados de cobre pórfiro apresentados na \autoref{hier_bound_sim} podem ser acessados no repositório: \url{https://github.com/robertorolo/hierarchical_boundary_simulation}. O repositório também conta com alguns módulos em Python necessários para aplicação do fluxo de trabalho.
