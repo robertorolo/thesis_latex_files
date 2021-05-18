@@ -307,12 +307,14 @@ Em três dimensões um algoritmo de extração de isosuperfícies pode ser aplic
     \caption{Exemplo mostrando a extração da isosuperfície zero e visualização em três dimensões.} \label{implicit_3d_ex}
      \centering
      \subfloat[][Amostras categóricas do banco dados tridimensional.]{\includegraphics[width=.40\textwidth]{capitulo_2/imagens/dados.jpeg}\label{fig:c1}}
+     \hspace{1em}
      \subfloat[][Amostras das distâncias assinaladas calculadas para a categoria sendo modelada]{\includegraphics[width=.40\textwidth]{capitulo_2/imagens/df1.jpeg}\label{fig:c1}} \\
-     \subfloat[][Modelo implícito interpolado por RBF para a categoria sendo modelada.]{\includegraphics[width=.5\textwidth]{capitulo_2/imagens/rbf.jpeg}\label{fig:c2}}
-     \subfloat[][Isosuperfície zero extraída a partir do modelo implícito.]{\includegraphics[width=.5\textwidth]{capitulo_2/imagens/isorbf.jpeg}\label{fig:c3}}
+     \subfloat[][Modelo implícito interpolado por RBF para a categoria sendo modelada.]{\includegraphics[width=.4\textwidth]{capitulo_2/imagens/rbf.jpeg}\label{fig:c2}}
+     \hspace{1em}
+     \subfloat[][Isosuperfície zero extraída a partir do modelo implícito.]{\includegraphics[width=.4\textwidth]{capitulo_2/imagens/isorbf.jpeg}\label{fig:c3}}
 \end{figure}
 
-Na presença de múltiplos domínios, as isosuperfícies ou iso-linhas, devem ser extraídas uma a uma, e algum tipo de regra hierárquica baseada na idade de cada litologia deve ser aplicada para a criação dos modelos multi-categóricos.
+Na presença de múltiplos domínios, as isosuperfícies ou isolinhas, devem ser extraídas uma a uma, e algum tipo de regra hierárquica baseada na idade de cada litologia deve ser aplicada para a criação dos modelos multi-categóricos.
 
 \subsubsection{Adaptação para múltiplas categorias}
 
@@ -587,15 +589,15 @@ Onde $d^*(u)$ é a distância interpolada no local não amostrado $u$, $d(u_i)$ 
 
 Limites pessimistas ou otimistas podem ser gerados a partir das parametrizações mostradas na \autoref{param}. A reta de inclinação negativa da Figura \autoref{paramlinear} dá cada vez mais peso para amostras de distância mais negativas, e cada vez menos peso para amostras mais positivas produzindo uma isosuperfície zero otimista. O domínio tem um volume maior em relação ao caso base onde $f^{DC}_i(u)$ é igual a um para todas as amostras independente do seu valor. O contrário acontece para a reta com inclinação positiva. 
 
-A magnitude da diferença entre os limites otimistas e pessimistas é dada pelo parâmetro fator mínimo, ou fmin, escolhido pelo usuário. Um f mínimo igual a um, gera um fator igual a um para todas as amostas (estimativa clássica). Quanto maior o fator maior a diferença entre os cenários. O valor de f mínimo pode ser diferente para os cenários otimista e pessimista. O parâmetro fmin pode ser diferente para as diferentes parametrizações (otimista e pessimista).
+A magnitude da diferença entre os limites otimistas e pessimistas é dada pelo parâmetro fator mínimo, ou \textit{fmin}, escolhido pelo usuário. Um f mínimo igual a um, gera um fator igual a um para todas as amostas (estimativa clássica). Quanto maior o fator maior a diferença entre os cenários. O valor de f mínimo pode ser diferente para os cenários otimista e pessimista. O parâmetro \textit{fmin} pode ser diferente para as diferentes parametrizações (otimista e pessimista).
 
 A magnitude da diferença pode ser acentuada usando uma função quadrática (Figura \autoref{paramquadrat}) ao invés de uma linear.
 
 \begin{figure}[H] 
     \centering
     \caption{Parametrização das amostras.} \label{param}
-     \subfloat[][Linear.]{\includegraphics[width=.8\textwidth]{capitulo_3/imagens/linear_kfp.png}\label{paramlinear}} \\
-     \subfloat[][Quadrática.]{\includegraphics[width=.8\textwidth]{capitulo_3/imagens/quadratic_kfp.png}\label{paramquadrat}}
+     \subfloat[][Linear.]{\includegraphics[width=.8\textwidth]{capitulo_2/imagens/linear_kfp.png}\label{paramlinear}} \\
+     \subfloat[][Quadrática.]{\includegraphics[width=.8\textwidth]{capitulo_2/imagens/quadratic_kfp.png}\label{paramquadrat}}
 \end{figure}
 
 \citeonline{mclennanstationarity} sugere o uso da interpolação pelo inverso da distância ao invés da krigagem porque os pesos negativos, que podem ser produzidos pela krigagem, interferem com o fator de parametrização.
