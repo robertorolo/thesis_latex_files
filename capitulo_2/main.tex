@@ -205,7 +205,9 @@ Os pesos podem ser calculados resolvendo as equações de krigagem. Neste caso, 
     \end{bmatrix}
 \end{equation}
 
-Onde $C_{ij}$ é a covariância entre as amostras $i$ e $j$, $C_{i0}$ é a covariância entre a amostra $i$ e o local a ser estimado, $n$ é o número de amostras no dataset e $\mu$ é o lagrangeano necessário para a krigagem ordinária \cite{isaaks1989applied}. A condição de não enviesamento é $\sum_{i=1}^{n} \lambda_i=1$
+Onde $C_{ij}$ é a covariância entre as amostras $i$ e $j$, $C_{i0}$ é a covariância entre a amostra $i$ e o local a ser estimado, $n$ é o número de amostras no dataset e $\mu$ é o lagrangeano necessário para a krigagem ordinária \cite{isaaks1989applied}. A condição de não enviesamento é $\sum_{i=1}^{n} \lambda_i=1$.
+
+A krigagem dual não necessariamente deve ser global, todavia, sem nenhuma adaptação, seus benefícios só podem ser capitalizados se uma vizinhança global for usada \cite{aunon2000dual}.
 
 \subsubsubsection{Krigagem dual} \label{dksection}
 
