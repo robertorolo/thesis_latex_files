@@ -207,8 +207,6 @@ Os pesos podem ser calculados resolvendo as equações de krigagem. Neste caso, 
 
 Onde $C_{ij}$ é a covariância entre as amostras $i$ e $j$, $C_{i0}$ é a covariância entre a amostra $i$ e o local a ser estimado, $n$ é o número de amostras no dataset e $\mu$ é o lagrangeano necessário para a krigagem ordinária \cite{isaaks1989applied}. A condição de não enviesamento é $\sum_{i=1}^{n} \lambda_i=1$.
 
-A krigagem dual não necessariamente deve ser global, todavia, sem nenhuma adaptação, seus benefícios só podem ser capitalizados se uma vizinhança global for usada \cite{aunon2000dual}.
-
 \subsubsubsection{Krigagem dual} \label{dksection}
 
 A krigagem dual \cite{royer1984dual} é uma representação alternativa da krigagem na qual as estimativas são expressas como uma combinação linear das covariâncias ao invés das amostras. Dessa forma, o estimador da \autoref{estimador} torna-se:
@@ -248,6 +246,8 @@ Os pesos são calculados resolvendo a \autoref{dual_k}:
 \end{equation}
 
 Onde $d_{n}$ é o valor da amostra de distância assinalada n. $m^*_{OK}$ e $\omega_i$ precisam ser calculados apenas uma única vez e usado para todas as estimativas.
+
+A krigagem dual não necessariamente deve ser global, todavia, sem nenhuma adaptação, seus benefícios só podem ser capitalizados se uma vizinhança global for usada \cite{aunon2000dual}.
 
 \subsubsubsection{Funções de bases radiais (RBF)}
 
