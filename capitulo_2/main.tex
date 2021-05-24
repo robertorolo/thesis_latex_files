@@ -684,12 +684,12 @@ A \autoref{c_uncert} mostra, para um esquema sintético em duas dimensões, em b
 	\legend{Fonte: \citeonline{wilde2012kriging}}
 \end{figure}
 
-Uma curva como a da \autoref{c_calib_grafico} é construída. São escolhidos N valores para C entre zero e um valor definido pelo usuário (linhas verde limão). Para cada um desses valores de C, são removidos x\% dos furos (ou amostras em duas dimensões) Z vezes (pontos azuis). É indicado que a classificação errônea seja calculada diversas vezes para que a calibração de C seja robusta \cite{wilde2012kriging}. O índice de classificação errônea é registrado no eixo Y do gráfico e o valor de C no eixo X. Então traça-se a classificação errônea média (curva em preto).
+Uma curva como a da \autoref{c_calib_grafico} é construída. São escolhidos N valores para C entre zero e um valor definido pelo usuário (linhas verde). Para cada um desses valores de C, são removidos x\% dos furos (ou amostras em duas dimensões) Z vezes (estrelas azuis). É indicado que a classificação errônea seja calculada diversas vezes para que a calibração de C seja robusta \cite{wilde2012kriging}. O índice de classificação errônea é registrado no eixo Y do gráfico e o valor de C no eixo X. Então traça-se a classificação errônea média (curva em preto).
 
 \begin{figure}[H]
 	\caption{\label{c_calib_grafico}Figura esquemática da curva de calibração.}
 	\centering
-		\includegraphics[width=0.6\textwidth]{capitulo_2/imagens/c_calib_schem.png}
+		\includegraphics[width=0.6\textwidth]{capitulo_2/imagens/calibration.png}
 \end{figure}
 
 \citeonline{manchuck_deutsch_Geometric} sugerem 2,5\% de classificação errônea um nível aceitável para depósitos tabulares, \cite{martin2017implicitmodeling} definiram como 3.9\% para um dos domínios de um depósito de cobre. Uma outra forma de escolha é o método do cotovelo, o valor tomado deve ser o ponto de inflexão da curva de calibração \cite{martin2017implicitmodeling}. C depende do tipo de depósito e da configuração geométrica das amostras. Para depósitos com menor variabilidade, como os de bauxita por exemplo, C deve ser pequeno. Já para depósitos com maior variação, como os de ouro, o valor de C deve ser maior. Para amostragens densas o valor de C deve ser menor em relação à amostragens esparsas. C não deve ser maior do que a malha de sondagem.

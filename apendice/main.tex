@@ -2,7 +2,7 @@
 
 Esse apêndice é manual de instalação e uso dos \textit{plugins} e \textit{jupyter notebooks} desenvolvidos. Os \textit{plugins} foram desenvolvidos para o software geostatístico \textit{SGeMS/AR2GeMS}. Recomenda-se a instalação e uso da suite de \textit{plugins} em uma versão do \textit{SGeMS/AR2GeMS} que inclua um interpretador python e a biblioteca \textit{ar2gas} embarcados (\textit{ar2gems-full-version-python3}).
 
-A suite de \textit{plugins} pode ser acessada no repositório: \url{https://github.com/robertorolo/LPM-Geomod_Suite}. Para instá-la primeiro deve-se instalar as seguintes dependências: \textit{ar2gas}, \textit{numpy}, \textit{math}, \textit{itertools}, \textit{scipy}, \textit{pyevtk}, \textit{sklearn}, \textit{pyevtk}. O reposítório conta com o arquivo \textit{install\underline{ }dependencies.py} ao copiar, colar e executar o conteúdo do arquivo no interpretador python embarcado no diretório do \textit{SGeMS/AR2GeMS} as dependências (com exceção do \textit{ar2gas} que não pode ser encontrado no repositório PyPI) são automaticamente instaladas.
+A suite de \textit{plugins} pode ser acessada no repositório: \url{https://github.com/robertorolo/LPM-Geomod_Suite}. Para instalá-la primeiro deve-se instalar as seguintes dependências: \textit{ar2gas}, \textit{numpy}, \textit{math}, \textit{itertools}, \textit{scipy}, \textit{pyevtk}, \textit{sklearn}, \textit{pyevtk}. O reposítório conta com o arquivo \textit{install\underline{ }dependencies.py}. Ao copiar, colar e executar o conteúdo do arquivo no interpretador python embarcado no diretório do \textit{SGeMS/AR2GeMS} as dependências (com exceção do \textit{ar2gas} que não pode ser encontrado no repositório PyPI) são automaticamente instaladas.
 
 Depois disso, os arquivos do diretório \textit{ui} dp repositório devem ser copiados e colados na pasta do \textit{SGeMS/AR2GeMS} plugins/Geostat, os arquivos do diretório \textit{py} do repositório devem ser copiados e colados na pasta do \textit{SGeMS/AR2GeMS} plugins/Geostat/python, finalmente, o arquivo \textit{helpers.py} do repositório deve ser copiado e colado na pasta \textit{Lib} do \textit{SGeMS/AR2GeMS}. Uma versão do \textit{SGeMS/AR2GeMS} com a suite previamente instalada pode ser solicitada ao autor dessa tese.
 
@@ -22,7 +22,7 @@ A suite traz ferramentas para transformar variáveis em suporte de pontos ou blo
 
 \subsection{Em pontos}\label{pttrans_sec}
 
-O \textit{plugin} \textit{point\underline{ }transform} (\autoref{pttrans}) recebe como \textit{input} a propriedade categórica que representa as diferentes litologias e faz a transformação em distâncias assinaladas ou indicadores. O \textit{output} são K propriedades, onde K é o número de litologias do banco de dados.
+O \textit{plugin} \textit{point\underline{ }transform} (\autoref{pttrans}) recebe como \textit{input} a propriedade categórica, que representa as diferentes litologias, e faz a transformação em distâncias assinaladas ou indicadores. O \textit{output} são K propriedades, onde K é o número de litologias do banco de dados.
 
 \begin{figure}[H]
 	\caption{\label{pttrans}Interface do \textit{plugin} \textit{point\underline{ }transform}}
@@ -46,7 +46,7 @@ Há ferramentas, que embora não sejam para modelagem geológica, auxiliam no pr
 
 \subsection{Criação automática do \textit{grid}}
 
-O \textit{plugin} \textit{auto\underline{ }grid} (\autoref{autogrid}) cria um \textit{grid} que cobre toda área ou volume ocupado pelas amostras com dimensões dos blocos (sx, sy, sz) informadas pelo usuário. O parâmtro \textit{buffer} controla a extensão do \textit{grid} para além dos limites mínimos e máximos das amostras.
+O \textit{plugin} \textit{auto\underline{ }grid} (\autoref{autogrid}) cria um \textit{grid} que cobre toda área ou volume ocupado pelas amostras com dimensões dos blocos (sx, sy, sz) informadas pelo usuário. O parâmetro \textit{buffer} controla a extensão do \textit{grid} para além dos limites mínimos e máximos das amostras.
 
 \begin{figure}[H]
 	\caption{\label{autogrid}Interface do \textit{plugin} \textit{auto\underline{ }grid}}
@@ -56,7 +56,7 @@ O \textit{plugin} \textit{auto\underline{ }grid} (\autoref{autogrid}) cria um \t
 
 \subsection{Exportação em formato VTK}
 
-O \textit{plugin} \textit{vtk\underline{ }export} (\autoref{vtk}) esporta propriedades em suporte de ponto ou bloco em formato VTK para visualização em outros softwares, como o Paraview, por exemplo.
+O \textit{plugin} \textit{vtk\underline{ }export} (\autoref{vtk}) exporta propriedades em suporte de ponto ou bloco em formato VTK para visualização em outros softwares, como o Paraview, por exemplo.
 
 \begin{figure}[H]
 	\caption{\label{vtk}Interface do \textit{plugin} \textit{vtk\underline{ }export}}
@@ -66,17 +66,17 @@ O \textit{plugin} \textit{vtk\underline{ }export} (\autoref{vtk}) esporta propri
 
 \section{Modelagem determinística}
 
-O \textit{plugin} \textit{deterministic} (\autoref{deterministic}) cria modelos geológicos uni ou multi categóricos a partir de distâncias assinaladas ou indicadores. Na aba \textit{general} (Figura \autoref{general}) O usuário seleciona se as propriedades são distâncias assinaladas ou indicadores. Deve selecionar o grid e o nome da propriedade que será criada. A opção \textit{keep all variables} cria, além do modelo final, todas as propriedades distâncias ou indicadores interpolados.
+O \textit{plugin} \textit{deterministic} (\autoref{deterministic}) cria modelos geológicos uni ou multi categóricos a partir de distâncias assinaladas ou indicadores. Na aba \textit{general} (Figura \autoref{general}), o usuário seleciona se as propriedades são distâncias assinaladas ou indicadores. Deve selecionar o grid e o nome da propriedade que será criada. A opção \textit{keep all variables} cria, além do modelo final, todas as propriedades distâncias ou indicadores interpolados.
 
-Se apenas uma categoria de distâncias assinaladas for escolhida a iso-superfície zero é extraída, se uma propriedade de indicadores for selecionada a abordagem apresentada na \autoref{problemas} é aplicada.
+Se apenas uma categoria de distâncias assinaladas for escolhida, a iso-superfície zero é extraída, se uma propriedade de indicadores for selecionada, a abordagem apresentada na \autoref{problemas} é aplicada.
  
-As propriedades interpoladas devem ser selecionadas em qualquer ordem, desde que tenham sido gradas pelo \textit{plugin} \textit{point\underline{ }transform} (\autoref{pttrans_sec}).
+As propriedades interpoladas podem ser selecionadas em qualquer ordem, desde que tenham sido geradas pelo \textit{plugin} \textit{point\underline{ }transform} (\autoref{pttrans_sec}).
 
-Em \textit{refinment options} O usuário insere os parâmetros para o refinamento de contatos (\autoref{bound_ref}): quantas iterações, zero gera um modelo sem refinamento, e os parâmetros de \textit{downscaling} do \textit{grid}, ou seja, em quantas partes as células serão divididas em x, y, e z.
+Em \textit{refinment options}, o usuário insere os parâmetros para o refinamento de contatos (\autoref{bound_ref}): quantas iterações, zero gera um modelo sem refinamento, e os parâmetros de \textit{downscaling} do \textit{grid}, ou seja, em quantas partes as células serão divididas em x, y, e z.
 
-Na aba \textit{variogram} o usuário insere os variogramas na mesma ordem que selecionou as variáveis interpoladas na aba anterior. Caso o usuário selecione a opção \textit{use variograms model file instead} ele deve carregar um arquivo de texto, como mostrado na \autoref{vario_model_txt}. O arquivo deve conter o número que representa cada categoria acompanhado do modelo variográfico em formato .xml, o mesmo formato usado pela ferramenta de variografia do \textit{SGeMS/AR2GeMS}.
+Na aba \textit{variogram}, o usuário insere os variogramas na mesma ordem que selecionou as variáveis interpoladas na aba anterior. Caso o usuário selecione a opção \textit{use variograms model file instead}, ele deve carregar um arquivo de texto, como mostrado na \autoref{vario_model_txt}. O arquivo deve conter o número que representa cada categoria acompanhado do modelo variográfico em formato .xml, o mesmo formato usado pela ferramenta de variografia do \textit{SGeMS/AR2GeMS}.
 
-Caso um único variograma seja informado todas as categorias serão interpoladas com esse mesmo modelo. Caso nenhum variograma seja informado um modelo Gaussiano com um range igual a maior distância entre uma amostra codificada com aquele indicador e um nó do \textit{grid} é usado para cada uma das propriedades interpoladas selecionadas.
+Caso um único variograma seja informado, todas as categorias serão interpoladas com esse mesmo modelo. Caso nenhum variograma seja informado, um modelo Gaussiano com um range igual a maior distância entre uma amostra codificada com aquele indicador e um nó do \textit{grid} é usado para cada uma das propriedades interpoladas selecionadas.
 
 \begin{figure}[H] 
     \centering
@@ -96,11 +96,11 @@ Caso um único variograma seja informado todas as categorias serão interpoladas
 
 A metodologia proposta por \citeonline{smirnoff2008support}, que usa máquina de vetores de suporte (\textit{support vector machine}) para a criação de modelos geológicos determinísticos multi-categóricos, foi implementada na suite a partir do \textit{plugin} SVM (\autoref{svm_plug}).
 
-Na aba \textit{general} (Figura \autoref{svm_gen}) o usuário seleciona a propriedade categórica, um \textit{grid} de estimativa e o nome da propriedade a ser criada.
+Na aba \textit{general}, (Figura \autoref{svm_gen}) o usuário seleciona a propriedade categórica, um \textit{grid} de estimativa e o nome da propriedade a ser criada.
 
-Na aba \textit{grid search} (Figura \autoref{svm_search}) o usuário seleciona os parâmetros que serão utilizados na função \textit{GridSearchCV} da biblioteca \textit{sklearn}. É necessário escolher valores mínimos e máximos para os hiper-parâmetros C e \textit{gamma} e um número N de valores aleatórios que serão tomados nesse intervalo, combinados e testado e uma validação \textit{k-folds}. Os valores padrão são os melhores intervalos encontrados em um teste de sensibilidade de hiper-parâmetros realizado por \citeonline{smirnoff2008support}.
+Na aba \textit{grid search}, (Figura \autoref{svm_search}) o usuário seleciona os parâmetros que serão utilizados na função \textit{GridSearchCV} da biblioteca \textit{sklearn}. É necessário escolher valores mínimos e máximos para os hiper-parâmetros C e \textit{gamma} e um número N de valores aleatórios que serão tomados nesse intervalo, combinados e testados e uma validação \textit{k-folds}. Os valores padrão são os melhores intervalos encontrados em um teste de sensibilidade de hiper-parâmetros realizado por \citeonline{smirnoff2008support}.
 
-Em N folds o usuário seleciona quantas \textit{folds} serão aplicadas na validação por \textit{kfolds}. Para o caso da Figura \autoref{svm_search} o algoritmo vai remover 20\% das amostras de forma aleatória do banco de dados cinco vezes e criar cinco bancos de dados de treino com 80\% das amostras e cinco banco de dados de teste correspondentes com 20\% das amostras. Então o algoritmo toma dez valores para C e dez valores para \textit{gamma} aleatoriamente nos intervalos selecionados, esses valores são combinados para gerar 100 diferentes modelos SVM. Cada um desses modelos é treinado em cada um dos cinco bancos de dados de treino e testado em seu respectivo banco de dados de teste. Com os parâmetros que apresentarem o melhor \textit{score} de validação um modelo é trinado usando a totalidade dos dados e a predição das categorias é feita no grid.
+Em \textit{N folds} o usuário seleciona quantas \textit{folds} serão aplicadas na validação por \textit{kfolds}. Para o caso da Figura \autoref{svm_search}, o algoritmo vai remover 20\% das amostras de forma aleatória do banco de dados cinco vezes e criar cinco bancos de dados de treino com 80\% das amostras e cinco banco de dados de teste correspondentes com 20\% das amostras. Então o algoritmo toma dez valores para C e dez valores para \textit{gamma} aleatoriamente nos intervalos selecionados, esses valores são combinados para gerar 100 diferentes modelos SVM. Cada um desses modelos é treinado em cada um dos cinco bancos de dados de treino e testado em seu respectivo banco de dados de teste. Com os parâmetros que apresentarem o melhor \textit{score} de validação, um modelo é treinado usando a totalidade dos dados e a predição das categorias é feita no \textit{grid}.
 
 \begin{figure}[H] 
     \centering
@@ -120,13 +120,13 @@ A \autoref{jura_svm} mostra o modelo geológico criado para o banco de dados \te
 
 \section{Modelagem estocástica}
 
-Dos algoritmos desenvolvidos nessa tese dois deles (parametrização do suporte do \textit{kernel}) e avaliação de incerteza usando funções distâncias assinaladas e campos potenciais) foram implementados como \textit{plugins} para o \textit{SGeMS/AR2GeMS}. A simulação hierárquica de contatos, por ser bastante dependente de \textit{softwares} da biblioteca GSLib, foi implementando em \textit{jupyter notebooks} usando a biblioteca \textit{pygeostat}.
+Dos algoritmos desenvolvidos nessa tese, dois deles (parametrização do suporte do \textit{kernel}) e avaliação de incerteza usando funções distâncias assinaladas e campos potenciais) foram implementados como \textit{plugins} para o \textit{SGeMS/AR2GeMS}. A simulação hierárquica de contatos, por ser bastante dependente de \textit{softwares} da biblioteca GSLib, foi implementando em \textit{jupyter notebooks} usando a biblioteca \textit{pygeostat}.
 
 \subsection{Parametrização do suporte \textit{kernel}}
 
-O \textit{plugin kernel\underline{ }factor\underline{ }uncertainty} (\autoref{kernel_plug}) implementa a metodologia proposta na \autoref{kernel_fac}. Na aba \textit{general} (Figura \autoref{kernel_gen}) o usuário seleciona o \textit{grid} de interpolação, as propriedades funções distância assinaladas e os parâmetros do método. Parametrização linear ou  quadrática deve ser selecionada, um valor de fmin otimista e um valor de fmin pessimista e o critério de aceitação de reprodução dos dados amostrais.
+O \textit{plugin kernel\underline{ }factor\underline{ }uncertainty} (\autoref{kernel_plug}) implementa a metodologia proposta na \autoref{kernel_fac}. Na aba \textit{general}, (Figura \autoref{kernel_gen}) o usuário seleciona o \textit{grid} de interpolação, as propriedades funções distância assinaladas e os parâmetros do método. Parametrização linear ou  quadrática deve ser selecionada, um valor de \textit{fmin} otimista e um valor de \textit{fmin} pessimista e o critério de aceitação de reprodução dos dados amostrais.
 
-Na aba \textit{kernel} (Figura \autoref{kernel_kernel}) é necessário selecionar os parâmetros dos \textit{kernels} para cada categoria. As funções Gaussiana e esférica estão disponíveis. Para os demais parâmetros, um único valor considera o mesmo para as múltiplas categorias, separando valores por vírgula, na mesma ordem que as distâncias assinaladas foram selecionadas na aba \textit{general} o algoritmo usará parâmetros diferentes para cada categoria. Selecionar o valor zero para o suporte fará com que o algoritmo calcule-o automaticamente como a maior distância entre uma amostra codificada com aquele indicador e um nó do \textit{grid}.
+Na aba \textit{kernel}, (Figura \autoref{kernel_kernel}) é necessário selecionar os parâmetros dos \textit{kernels} para cada categoria. As funções Gaussiana e esférica estão disponíveis. Para os demais parâmetros, um único valor considera o mesmo para as múltiplas categorias, separando valores por vírgula, na mesma ordem que as distâncias assinaladas foram selecionadas na aba \textit{general}, o algoritmo usará parâmetros diferentes para cada categoria. Selecionar o valor zero para o suporte fará com que o algoritmo calcule-o automaticamente como a maior distância entre uma amostra codificada com aquele indicador e um nó do \textit{grid}.
 
 A implementação da anisotropia ainda é um trabalho em progresso e necessita de testes e ajustes.
 
@@ -140,9 +140,9 @@ A implementação da anisotropia ainda é um trabalho em progresso e necessita d
 
 \subsection{Avaliação de incerteza usando funções distâncias assinaladas e campos potenciais}
 
-O \textit{plugin boundary\underline{ }simulation\underline{ }pfields} (\autoref{pfields_plug}) implementa o método apresentado na \autoref{pfiels_sec}. Na aba \textit{general} (Figura \autoref{pfields_gen}) o suário deve informar o nome da propriedade que será criada, a largura da banda de incerteza e o parâmetro \textit{gamma} (ou \textit{omega}) que será usado na transformação das distâncias em probabilidades. Caso zero seja escolhido para o parâmetro \textit{gamma} o algoritmo usará a maior distância absoluta estimada entre todas as categorias bloco a bloco.
+O \textit{plugin boundary\underline{ }simulation\underline{ }pfields} (\autoref{pfields_plug}) implementa o método apresentado na \autoref{pfiels_sec}. Na aba \textit{general}, (Figura \autoref{pfields_gen}) o usuário deve informar o nome da propriedade que será criada, a largura da banda de incerteza e o parâmetro \textit{gamma} (ou \textit{omega}) que será usado na transformação das distâncias em probabilidades. Caso zero seja escolhido para o parâmetro \textit{gamma}, o algoritmo usará a maior distância absoluta estimada entre todas as categorias bloco a bloco.
 
-Na aba \textit{gaussian simulations} o usuário deve inserir as simulações Gaussianas que serão transformadas em campos de probabilidade e usadas para amostras as distribuições locais.
+Na aba \textit{gaussian simulations}, o usuário deve inserir as simulações Gaussianas que serão transformadas em campos de probabilidade e usadas para amostras as distribuições locais.
 
 \begin{figure}[H] 
     \centering
@@ -152,11 +152,11 @@ Na aba \textit{gaussian simulations} o usuário deve inserir as simulações Gau
      \subfloat[][Situação real, com viés conservador.]{\includegraphics[width=.45\textwidth]{apendice/imagens/bound_sim_pfields2.PNG}\label{pfileds_gauss}}
 \end{figure}
 
-Se houver apenas uma categoria no banco de dados o algoritmo estandardiza o valor simulado entre [-bw,bw], onde bw é o valor escolhido para a banda de incerteza e compara, dentro da zona de incerteza, o valor simulado e o valor estimado. Os blocos são classificados de aocordo com a \autoref{comp_class}.
+Se houver apenas uma categoria no banco de dados, o algoritmo estandardiza o valor simulado entre [-bw,bw], onde bw é o valor escolhido para a banda de incerteza e compara, dentro da zona de incerteza, o valor simulado e o valor estimado. Os blocos são classificados de aocordo com a \autoref{comp_class}.
 
 \subsection{Simulação de contatos hierárquica}
 
-Os \textit{jupyter notebooks} utilizados para a prova de conceito no banco de dados \textit{Swiss Jura} e no estudo de caso no banco de dados de cobre pórfiro apresentados na \autoref{hier_bound_sim} podem ser acessados no repositório: \url{https://github.com/robertorolo/hierarchical_boundary_simulation}. O repositório também conta com alguns módulos em Python necessários para aplicação do fluxo de trabalho.
+Os \textit{jupyter notebooks} utilizados para a prova de conceito no banco de dados \textit{Swiss Jura} e no estudo de caso no banco de dados de cobre pórfiro, apresentados na \autoref{hier_bound_sim}, podem ser acessados no repositório: \url{https://github.com/robertorolo/hierarchical_boundary_simulation}. O repositório também conta com um módulo em Python necessário para aplicação do fluxo de trabalho.
 
 \begin{itemize}
     \item Prova de conceito no \textit{Swiss Jura}:\url{https://github.com/robertorolo/hierarchical_boundary_simulation/blob/main/jura_case_study.ipynb}
