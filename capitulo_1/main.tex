@@ -1,6 +1,6 @@
 \chapter{Introdução}
 
-Esse capítulo traz uma breve contextualização com o objetivo de justificar e construir um caminho lógico para a motivação da tese. Além disso, a declaração de tese é apresentada e sua estrutura é delineada.
+Este capítulo traz uma breve contextualização com o objetivo de justificar e construir um caminho lógico para a motivação da tese. Além disso, a declaração de tese é apresentada e a estrutura do documento é delineada.
 
 \section{Contextualização}
 
@@ -69,9 +69,9 @@ O objetivo desa tese é propor e investigar três diferentes metodologias para a
 
 \subsection{Desenvolvimento de software}
 
-Foi desenvolvida uma \textit{suite} de \textit{plug-ins} de modelagem geológica para o \textit{software} geoestatístico \textit{SGeMS/AR2GeMS}: \href{https://github.com/robertorolo/LPM-Geomod_Suite}{LPM-Geomod-Suite}. Os \textit{plug-ins} abrangem todas as etapas da modelagem geológica com funções distância assinaladas e indicadores desde a transformação das amostras, interpolação, transformações das propriedades em um \textit{grid} e avaliação da incerteza associada ao modelo geológico utilizando os métodos propostos. 
+Foi desenvolvida uma \textit{suite} de \textit{plug-ins} de modelagem geológica para o \textit{software} geoestatístico \textit{SGeMS/AR2GeMS}: \href{https://github.com/robertorolo/LPM-Geomod_Suite}{LPM-Geomod-Suite}. Os \textit{plug-ins} abrangem todas as etapas da modelagem geológica com funções distância assinaladas e indicadores desde transformações, interpolação, e avaliação da incerteza associada ao modelo geológico. 
 
-Um manual de uso dos \textit{plug-ins} é apresentado no \autoref{software}. 
+Um manual de instalação e uso dos \textit{plug-ins} é apresentado no \autoref{software}. 
 
 \subsection{Avaliação de incerteza pela parametrização do suporte do \textit{kernel}}
 
@@ -79,11 +79,11 @@ Um manual de uso dos \textit{plug-ins} é apresentado no \autoref{software}.
 
 \subsection{Avaliação de incerteza usando funções distância assinaladas e campos de probabilidade}
 
-É proposto um método de avaliação de incerteza utilizando funções distância assinaladas e campos de probabilidade. Uma zona de incerteza é definida ao redor dos contatos, então, as distâncias assinaladas interpoladas no interior da zona de incerteza são transformadas em probabilidades. Em seguida, os campos de probabilidades gerados a partir de simulações gaussianas não condicionais são utilizados para simular as diferentes realizações para o modelo geológico a partir do método de Monte Carlo.
+É proposto um método de avaliação de incerteza utilizando funções distância assinaladas e campos de probabilidade. Uma zona de incerteza é definida ao redor dos contatos, então, as distâncias assinaladas interpoladas no interior da zona de incerteza são transformadas em probabilidades. Em seguida, os campos de probabilidades gerados a partir de simulações Gaussianas não condicionais são utilizados para simular as diferentes realizações para o modelo geológico a partir do método de Monte Carlo.
 
 \subsection{Simulação de contatos hierárquica para múltiplas categorias}
 
-Uma adaptação do método proposto por \citeonline{wilde2012kriging} para múltiplas categorias simultâneas é proposto. Um algoritmo que identifica e conta os diferentes contatos é usado para agrupá-los de forma hierárquica. Os contatos representados por cada grupo são simulados de forma independente e a regra hierárquica é usada para construir as diferentes realizações do modelo geológico multi-categórico. 
+Uma adaptação do método proposto por \citeonline{wilde2012kriging} para múltiplas categorias simultâneas é proposto. Um algoritmo que identifica e define a frequência de ocorrência dos diferentes contatos é usado para agrupá-los de forma hierárquica. Os contatos representados por cada grupo são simulados de forma independente e a regra hierárquica é usada para construir as diferentes realizações do modelo geológico multi-categórico. 
 
 \section{Estrutura da tese}
 
@@ -91,6 +91,6 @@ O capítulo 1 dessa tese traz uma introdução ao assunto modelagem geológica e
 
 O capítulo 2 é uma revisão extensiva da literatura em modelagem geológica e avaliação de incerteza em modelos geológicos usando funções distância assinaladas. 
 
-O capítulo 3 apresenta os métodos propostos utilizando o conhecido \textit{dataset} \textit{Swiss Jura} \cite{goovaerts1997geostatistics} como prova de conceito em 2D. Um estudo de caso também é apresentado mostrando a eficiência de cada um dos métodos. Os métodos e resultados são discutidos.
+O capítulo 3 apresenta as metodologias propostas utilizando o conhecido \textit{dataset} \textit{Swiss Jura} \cite{goovaerts1997geostatistics} como prova de conceito em 2D. Um estudo de caso é conduzido para cada uma das metodologias propostas mostrando sua eficiência. As características e particularidades de cada uma delas e os resultados obtidos são discutidos.
 
-Finalmente, o capítulo 4 apresenta as observações finais, um sumário das contribuições e sugere trabalhos futuros.
+Finalmente, o capítulo 4 apresenta as observações finais, um sumário das contribuições da tese e sugere trabalhos futuros.
