@@ -608,10 +608,10 @@ O produto final do método pode ser utilizado nas etapas subsequentes do process
 
 \subsection{Condicionamento das amostras}\label{chap:cond_amo}
 
-\citeonline{mclennanstationarity} também propôs uma metodologia baseada na parametrização das amostras e posterior estimativas. Os pesos de krigagem e da interpolação pelo inverso da distância dependem do arranjo geométrico das amostras mas não dos valores das amostras. A proposta é alterar os pesos dados às amostras a partir de um fator de condicionamento $f^{DC}_i(u)$, como apresentado na \autoref{estimador_k}
+\citeonline{mclennanstationarity} também propôs uma metodologia baseada na parametrização das amostras e posterior estimativas. Os pesos de krigagem e da interpolação pelo inverso da distância dependem do arranjo geométrico das amostras mas não dos valores das amostras. A proposta é alterar os pesos dados às amostras a partir de um fator de condicionamento $f^{DC}_i(u)$, como apresentado na \autoref{estimador_cond}
 
 \begin{equation}
-\label{estimador_k}
+\label{estimador_cond}
 d^*(u)=\sum_{i=1}^{n} f^{DC}_i(u) \lambda_i(u) d(u_i)
 \end{equation}
 
