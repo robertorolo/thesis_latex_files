@@ -8,7 +8,7 @@ Esse método é uma adaptação do condicionamento das amostras apresentado na \
 
 Essa adaptação propõe, no lugar de modificar o peso dado às amostras, modificar o suporte dos \textit{kernels} usados na interpolação por funções de bases radiais multiplicando-os por um fator menor ou maior que um. Para cada propriedade de função distância assinalada que representa cada categoria do depósito mineral, os cenários otimista, pessimista e caso base são gerados e combinados para criar múltiplos cenários para o modelo geológico multi-categórico.
 
-Considere o exemplo em uma dimensão da \autoref{one_dim_ex}. A figura mostra quatro amostras, duas azuis que não pertencem ao domínio sendo modelado, e duas vermelhas que pertencem ao domínio sendo modelado. As amostras estão, da esquerda para a direita, nas posições 1, 10, 70 e 90.
+Considere o exemplo em uma dimensão da \autoref{one_dim_ex}. A figura mostra quatro amostras, duas azuis pertencem ao domínio sendo modelado, e duas vermelhas que não pertencem ao domínio sendo modelado. As amostras estão, da esquerda para a direita, nas posições 1, 10, 70 e 90.
 
 \begin{figure}[H]
 	\caption{\label{one_dim_ex} Amostras em posição 1, 10, 70 e 90. Amostras em azul não pertencem ao domínio enquanto amostras vermelhas pertencem.}
@@ -33,9 +33,9 @@ A \autoref{dif_kernel} mostra as RBFs, que na \autoref{uni_rbf} apresentam supor
 \begin{figure}[H] 
     \centering
     \caption{Amostras em uma dimensão no gráfico na posição inferior e distâncias assinaladas calculadas para cada uma das amostras no eixo y do gráfico na posição superior. As curvas coloridas representam os \textit{kernels} associados à cada amostra.} \label{dif_kernel}
-     \subfloat[][Caso otimista.]{\includegraphics[width=.45\textwidth]{capitulo_3/imagens/pessimistic_kernels.png}\label{<figure1>}}
+     \subfloat[][Caso pessimista.]{\includegraphics[width=.45\textwidth]{capitulo_3/imagens/pessimistic_kernels.png}\label{<figure1>}}
      \hspace{1em}
-     \subfloat[][Caso pessimista.]{\includegraphics[width=.45\textwidth]{capitulo_3/imagens/optmistic_kernels.png}\label{<figure2>}}
+     \subfloat[][Caso otimista.]{\includegraphics[width=.45\textwidth]{capitulo_3/imagens/optmistic_kernels.png}\label{<figure2>}}
 \end{figure}
 
 A \autoref{one_dim_result} mostra, em preto, a superfície interpolada para o caso base, em vermelho, para o cenário pessimista e em azul para o cenário otimista. 
@@ -335,7 +335,7 @@ Kimmeridgian; Sequian; Quartenary     & 4   \\ \hline
 \end{tabular}
 \end{table}
 
-Para definir os (K-1) grupos, onde K é o número de categorias do conjunto de dados, o Algoritmo \ref{algo:group} é aplicado. Os primeiros grupos representam os contatos mais frequentes. Na iteração inicial, a variável i é o número par 0, o algoritmo irá criar um grupo onde as amostras das categorias Kimmeridgian e Sequian são codificadas como 1 e as amostras de outras categorias são codificadas como 0. Na segunda iteração, a variável i recebe o número ímpar 1, portanto o algoritmo irá criar um grupo onde as amostras da categoria Kimmeridgian são codificadas como 1 e Sequian são codificadas como 0. Além disso, o algoritmo irá remover da tabela de contagem de contatos quaisquer contatos em que Kimmeridgian ou Sequian façam parte, a saber, linhas 1, 2, 3, 5, 6 e 7. A variável i apresenta o valor par igual a 2 na terceira iteração, assim um grupo é criado onde as amostras das categorias Argovian e Quartenary são codificadas como 1 e as outras categorias da tabela de contagem de contatos, após a remoção das linhas, são codificadas como 0, pois este é o contato mais frequente após a remoção das linhas. O algoritmo assume que os primeiros (K-1) contatos mais frequentes serão entre duas, não mais, categorias, o que é razoável em um contexto geológico.
+Para definir os (K-1) grupos, onde K é o número de categorias do conjunto de dados, o Algoritmo \ref{algo:group} é aplicado. Os primeiros grupos representam os contatos mais frequentes. Na iteração inicial, a variável i é o número par 0, o algoritmo irá criar um grupo onde as amostras das categorias Kimmeridgian e Sequian são codificadas como 1 e as amostras de outras categorias são codificadas como 0. Na segunda iteração, a variável i recebe o número ímpar 1, portanto o algoritmo irá criar um grupo onde as amostras da categoria Kimmeridgian são codificadas como 1 e Sequian são codificadas como 0. Além disso, o algoritmo irá remover da tabela de contagem de contatos quaisquer contatos em que Kimmeridgian ou Sequian façam parte, a saber, linhas 1, 2, 3, 5, 6, 8, 9, 10, 11 e 12. A variável i apresenta o valor par igual a 2 na terceira iteração, assim um grupo é criado onde as amostras das categorias Argovian e Quartenary são codificadas como 1 e as outras categorias da tabela de contagem de contatos, após a remoção das linhas, são codificadas como 0, pois este é o contato mais frequente após a remoção das linhas. O algoritmo assume que os primeiros (K-1) contatos mais frequentes serão entre duas, não mais, categorias, o que é razoável em um contexto geológico.
 
 \begin{algorithm}[H]
 \SetAlgoLined
