@@ -1,6 +1,6 @@
 \chapter{Metodologias propostas}\label{chap3}
 
-Nesse capítulo, as três metodologias para avaliação de incerteza em modelos geológicos multi-categóricos usando funções distâncias assinaladas propostas nessa tese são apresentadas. Todos os métodos são acompanhados de uma prova de conceito no banco de dados \textit{Swiss Jura} e um estudo de caso. 
+Nesse capítulo, as três metodologias para avaliação de incerteza em modelos geológicos multi-categóricos usando funções distâncias assinaladas propostas nessa tese são apresentadas. Todos os métodos são acompanhados de uma prova de conceito no banco de dados \textit{Swiss Jura} e um estudo de caso.
 
 \section{Parametrização do suporte do \textit{kernel}}\label{kernel_fac}
 
@@ -18,7 +18,7 @@ Considere o exemplo em uma dimensão da \autoref{one_dim_ex}. A figura mostra qu
 
 A \autoref{uni_rbf} mostra, no gráfico na posição inferior, as amostras da \autoref{one_dim_ex} e no eixo y do gráfico, na posição superior, o valor da função distância assinalada calculada para cada uma das quatro amostras. A Figura \autoref{at} mostra uma função RBF com suporte igual a 25 centrada em cada uma das amostras. A Figura \autoref{dt} mostra, em preto, a superfície interpolada a partir da combinação linear das quatro RBFs após o cálculo dos pesos a partir do sistema de equações apresentado na \autoref{rbf_sist}. O limite entre os domínios é onde a distância assinalada interpolada é igual a zero.
 
-\begin{figure}[H] 
+\begin{figure}[H]
     \centering
     \caption{Amostras em uma dimensão no gráfico na posição inferior e distâncias assinaladas calculadas para cada uma das amostras no eixo y do gráfico na posição superior. As curvas coloridas representam \textit{kernels} associados a cada amostra. A reta vertical na figura da direita na posição 40 representa o contato entre as categorias.} \label{uni_rbf}
      \subfloat[][Uma RBF com suporte igual a 25 e centrada em cada uma das amostas.]{\includegraphics[width=.45\textwidth]{capitulo_3/imagens/RBF_before_train.png}\label{at}}
@@ -30,7 +30,7 @@ O método proposto modifica o suporte de cada uma das RBFs centradas nas amostra
 
 A \autoref{dif_kernel} mostra as RBFs, que na \autoref{uni_rbf} apresentam suporte igual a 25, com seus suportes modificados a partir de curvas de parametrização lineares.  Os pesos são então calculados para cada um dos casos (otimista e pessimista) e uma superfície interpolada pode ser gerada a partir da combinação linear das RBFs.
 
-\begin{figure}[H] 
+\begin{figure}[H]
     \centering
     \caption{Amostras em uma dimensão no gráfico na posição inferior e distâncias assinaladas calculadas para cada uma das amostras no eixo y do gráfico na posição superior. As curvas coloridas representam os \textit{kernels} associados à cada amostra.} \label{dif_kernel}
      \subfloat[][Caso pessimista.]{\includegraphics[width=.45\textwidth]{capitulo_3/imagens/pessimistic_kernels.png}\label{<figure1>}}
@@ -38,8 +38,8 @@ A \autoref{dif_kernel} mostra as RBFs, que na \autoref{uni_rbf} apresentam supor
      \subfloat[][Caso otimista.]{\includegraphics[width=.45\textwidth]{capitulo_3/imagens/optmistic_kernels.png}\label{<figure2>}}
 \end{figure}
 
-A \autoref{one_dim_result} mostra, em preto, a superfície interpolada para o caso base, em vermelho, para o cenário pessimista e em azul para o cenário otimista. 
- 
+A \autoref{one_dim_result} mostra, em preto, a superfície interpolada para o caso base, em vermelho, para o cenário pessimista e em azul para o cenário otimista.
+
 \begin{figure}[H]
 	\caption{\label{one_dim_result} Caso base e cenários otimista e pessimista para o exemplo unidimensional proposto. As retas verticais representam os pontos de contato entre as categorias.}
 	\centering
@@ -48,7 +48,7 @@ A \autoref{one_dim_result} mostra, em preto, a superfície interpolada para o ca
 
 A aplicação do método, no banco de dados \textit{Swiss Jura}, consiste em calcular as distâncias assinaladas para cada uma das cinco categorias do banco de dados. Os parâmetros \textit{fmin} para os cenários otimista e pessimista usados na modificação do suporte devem ser escolhidos. Nesse caso, usou-se um modelo linear com valor de f mínimo igual a 0.95 para todas as categorias. A \autoref{quater_param} mostra as distâncias assinaladas para a categoria Quaternary interpoladas para o cenário pessimista, caso base e cenário otimista. Os mesmos cenários foram interpolados para as outras quatro categorias presentes no banco de dados.
 
-\begin{figure}[H] 
+\begin{figure}[H]
     \centering
     \caption{Distâncias assinaladas interpoladas para a categoria Quaternary do banco de dados \textit{Jura} para o caso base, e cenários pessimista e otimista.} \label{quater_param}
      \subfloat[][Caso pessimista.]{\includegraphics[width=.3\textwidth]{capitulo_3/imagens/pessimistic.png}\label{<figure1>}}
@@ -58,12 +58,12 @@ A aplicação do método, no banco de dados \textit{Swiss Jura}, consiste em cal
      \subfloat[][Caso otimista.]{\includegraphics[width=.3\textwidth]{capitulo_3/imagens/optimistic.png}\label{<figure3>}}
 \end{figure}
 
-Para cada categoria, há três diferentes cenários que devem ser combinados para criar os modelos geológicos multi-categóricos. Em alguns casos, a combinação do cenário otimista de uma categoria com grande área ou volume com o cenário pessimista de uma categoria de pequena área ou volume pode fazer com que nenhum bloco seja atribuído à categoria de menor proporção em alguns dos $3^K$ modelos gerados, onde K é o número de categorias do banco de dados.  
-Para contornar esse problema, os modelos devem passar por um teste de validação. O algoritmo checa se o bloco com o centroide mais próximo a cada amostra foi classificado com a mesma categoria daquela amostra. O usuário seleciona um nível mínimo de reprodução, nesse caso 0.9. Desse modo, modelos que não reproduzam, pelo menos, 90\% dos dados amostrais, são descartados. Dos 243 modelos gerados para o \textit{Swiss Jura} combinando os três cenários para as cinco diferentes categorias, 24 não foram descartados já que reproduzem, pelo menos, 90\% das amostras. 
+Para cada categoria, há três diferentes cenários que devem ser combinados para criar os modelos geológicos multi-categóricos. Em alguns casos, a combinação do cenário otimista de uma categoria com grande área ou volume com o cenário pessimista de uma categoria de pequena área ou volume pode fazer com que nenhum bloco seja atribuído à categoria de menor proporção em alguns dos $3^K$ modelos gerados, onde K é o número de categorias do banco de dados.
+Para contornar esse problema, os modelos devem passar por um teste de validação. O algoritmo checa se o bloco com o centroide mais próximo a cada amostra foi classificado com a mesma categoria daquela amostra. O usuário seleciona um nível mínimo de reprodução, nesse caso 0.9. Desse modo, modelos que não reproduzam, pelo menos, 90\% dos dados amostrais, são descartados. Dos 243 modelos gerados para o \textit{Swiss Jura} combinando os três cenários para as cinco diferentes categorias, 24 não foram descartados já que reproduzem, pelo menos, 90\% das amostras.
 
 A \autoref{jura_kernel} mostra duas realizações escolhidas aleatoriamente entre as 24 selecionadas, juntamente com as amostras representadas pelos círculos. Uma animação mostrando todas as realizações pode ser vista \href{https://github.com/robertorolo/kernel_support_parametrization_uncertainty_assess/blob/main/ezgif-7-b96e150c9939.gif}{aqui}.
 
-\begin{figure}[H] 
+\begin{figure}[H]
     \centering
     \caption{Modelos geológicos para o \textit{Swiss Jura} criados a partir da parametrização do suporte do \textit{kernel}. As cores representam cada uma das cinco categorias enquanto a legenda mostra a qual cenário aquela categoria pertence.} \label{jura_kernel}
      \subfloat[][Modelo 200.]{\includegraphics[width=.45\textwidth]{capitulo_3/imagens/out_model_10_kf_200.png}\label{<figure1>}}
@@ -75,9 +75,9 @@ A \autoref{jura_kernel} mostra duas realizações escolhidas aleatoriamente entr
 
 Para ilustrar de forma prática a metodologia, uma seção de um modelo conceitual foi produzida e é mostrada na Figura \autoref{exa}. O modelo é composto por rocha encaixante, mostrada em vermelho, um dique, mostrado em verde, e estruturas lenticulares, mostradas em azul.
 
-O modelo conceitual exaustivo foi amostrado por 12 furos verticais igualmente espaçados. O espaçamento vertical das compostas é de 10 metros. Os furos verticais são mostrados na Figura \autoref{sampl}. 
+O modelo conceitual exaustivo foi amostrado por 12 furos verticais igualmente espaçados. O espaçamento vertical das compostas é de 10 metros. Os furos verticais são mostrados na Figura \autoref{sampl}.
 
-\begin{figure}[H] 
+\begin{figure}[H]
     \centering
     \caption{Modelo conceitual composto por rocha encaixante, mostrada em vermelho, um dique, mostrado em verde, e estruturas lenticulares, mostradas em azul.} \label{concep_exhaust}
      \subfloat[][Exaustivo.]{\includegraphics[width=.8\textwidth]{capitulo_3/imagens/exhaustive.png}\label{exa}}
@@ -93,7 +93,7 @@ A \autoref{synth_reals} mostra duas realizações aprovadas no critério de acei
 
 Uma animação mostrando todas as 17 realizações (aprovadas no teste de reprodução) pode ser vista \href{https://github.com/robertorolo/kernel_support_parametrization_uncertainty_assess/blob/main/sec_hole_10.gif}{aqui}.
 
-\begin{figure}[H] 
+\begin{figure}[H]
     \centering
     \caption{Realizações para o modelo geológico sintético geradas a partir dos furos verticais. As cores representam cada uma das três categorias enquanto a legenda mostra a qual cenário aquela categoria pertence.} \label{synth_reals}
      \subfloat[][Modelo 14.]{\includegraphics[width=.8\textwidth]{capitulo_3/imagens/sec1.png}\label{mod20}}
@@ -105,7 +105,7 @@ Uma animação mostrando todas as 17 realizações (aprovadas no teste de reprod
 
 O método proposto por \citeonline{mclennanstationarity} é baseado em interpoladores pelo inverso da distância. Por esse motivo, não é possível considerar anisotropia, de forma direta, nos modelos. O autor põe o método em prática apenas em modelos sintéticos de geometria simples, quando aplicado a modelos com geologias complexas, a multiplicação dos pesos diretamente pelo fator calculado para cada amostra a partir da parametrização produziu, muitas vezes, volumes (ou áreas) muito grandes ou muito pequenas que não honram os dados amostrais. Aplicar o fator no suporte do \textit{kernel} torna o método menos sensível aos fatores e dá ao usuário um controle maior sobre os modelos gerados, já que é possível diminuir artificialmente o suporte do \textit{kernel} para reduzir sua influência em detrimento da influência da parametrização.
 
-O método proposto, por ser baseado em interpolação global, gera modelos sem ruídos, apresentando o realismo geológico esperado. O método simula diferentes interpretações para cada litologia do modelo geológico contraindo ou expandindo os diferentes domínios. 
+O método proposto, por ser baseado em interpolação global, gera modelos sem ruídos, apresentando o realismo geológico esperado. O método simula diferentes interpretações para cada litologia do modelo geológico contraindo ou expandindo os diferentes domínios.
 
 O usuário pode controlar o quanto os modelos honram os dados amostrais; entretanto, uma maior restrição nesse sentido gera menos cenários diferentes.
 
@@ -229,7 +229,7 @@ Dez realizações de uma simulação não condicional Gaussiana foram realizadas
 
 \subsection{Discussão}
 
-Uma das técnicas tradicionalmente usadas para modelar geocorpos e avaliar sua incerteza na presença de várias categorias é a simulação sequencial dos indicadores (SISIM). A SISIM foi aplicada ao mesmo banco de dados a fim de comparar os resultados com a metodologia proposta, uma vez que também depende apenas das coordenadas x, y e z dos compósitos e da propriedade categórica. 
+Uma das técnicas tradicionalmente usadas para modelar geocorpos e avaliar sua incerteza na presença de várias categorias é a simulação sequencial dos indicadores (SISIM). A SISIM foi aplicada ao mesmo banco de dados a fim de comparar os resultados com a metodologia proposta, uma vez que também depende apenas das coordenadas x, y e z dos compósitos e da propriedade categórica.
 
 A \autoref{sec_comp} mostra um comparativo de seções verticais XZ entre a metodologia proposta (\autoref{fig:pfields}), a SISIM (\autoref{fig:sisim}) utilizando o variograma dos indicadores mostrados na \autoref{ouro_vargs}, e um modelo explícito (\autoref{fig:explicit}) elaborado por um geomodelador experiente. Uma animação mostrando as mesmas seções para todas as dez realizações pode ser vista \href{https://github.com/robertorolo/assessing_geological_model_uncertainty_with_probability_fields/blob/main/ezgif-2-802d466feae1.gif}{aqui}. A SISIM gera realizações com uma textura típica \textit{"salt and pepper"} e padrões ruidosos, o que não é geologicamente realista. Foram propostas técnicas para limpar as realizações da SISIM \cite{DEUTSCH1998551, yamamoto2015post}. Uma dessas técnica é chamada MAPS (\textit{maximum a-posteriori selection}), e é comumente utilizada para remover os artefatos ruidosos da SISIM e melhorar a reprodução das proporções das categorias. A Figura \autoref{fig:blsis} mostra seções verticais de uma realização da SISIM pós processada.
 
@@ -255,11 +255,11 @@ O comportamento dos contatos é controlado pelo variograma usado na simulação 
 		\includegraphics[width=0.6\textwidth]{capitulo_3/imagens/sph_real_0_50_12.png}
 \end{figure}
 
-A magnitude da incerteza é controlada tanto pela largura de zona de incerteza quanto pelo parâmetro $\omega$. Um valor para o parâmetro $\omega$ pode ser escolhido para todos os blocos ou o maior valor absoluto entre as distâncias assinaladas pode ser utilizado como parâmetro $\omega$ bloco a bloco. Nesse caso, somente a largura da banda vai controlar a magnitude da incerteza. Uma animação mostrando 10 realizações feitas para o \textit{Swiss Jura} com o mesmo variograma Gaussiano do exemplo anterior, entretanto, para uma largura da zona de incerteza de 20 metros pode ser vista \href{https://github.com/robertorolo/assessing_geological_model_uncertainty_with_probability_fields/blob/main/ezgif-2-721b458d5c70.gif}{aqui}. Como há mais área para os contatos mudarem de posição, a variação de área é maior do que a observada para a largura de banda de 12 metros. 
+A magnitude da incerteza é controlada tanto pela largura de zona de incerteza quanto pelo parâmetro $\omega$. Um valor para o parâmetro $\omega$ pode ser escolhido para todos os blocos ou o maior valor absoluto entre as distâncias assinaladas pode ser utilizado como parâmetro $\omega$ bloco a bloco. Nesse caso, somente a largura da banda vai controlar a magnitude da incerteza. Uma animação mostrando 10 realizações feitas para o \textit{Swiss Jura} com o mesmo variograma Gaussiano do exemplo anterior, entretanto, para uma largura da zona de incerteza de 20 metros pode ser vista \href{https://github.com/robertorolo/assessing_geological_model_uncertainty_with_probability_fields/blob/main/ezgif-2-721b458d5c70.gif}{aqui}. Como há mais área para os contatos mudarem de posição, a variação de área é maior do que a observada para a largura de banda de 12 metros.
 
-O mesmo comportamento é evidenciado pelos mapa de entropia calculados a partir da \autoref{shannon_entr} (e estandardizadas para que os valores estejam entre 0 e 1) para as bandas de incerteza de 12 e 20 metros. Blocos que a entropia tem um valor alto, variam mais entre diferentes categorias nas diferentes realizações. 
+O mesmo comportamento é evidenciado pelos mapa de entropia calculados a partir da \autoref{shannon_entr} (e estandardizadas para que os valores estejam entre 0 e 1) para as bandas de incerteza de 12 e 20 metros. Blocos que a entropia tem um valor alto, variam mais entre diferentes categorias nas diferentes realizações.
 
-\begin{figure}[H] 
+\begin{figure}[H]
     \centering
     \caption{Entropia calculada a partir das dez realizações no \textit{Swiss Jura}.} \label{jura_entropy}
      \subfloat[][Zona de incerteza de 12 metros.]{\includegraphics[width=.45\textwidth]{capitulo_3/imagens/jura_entropy_12.png}\label{<figure1>}}
@@ -295,7 +295,7 @@ A zona de incerteza simétrica ao redor dos contatos também pode ser um fator d
 
 \section{Simulação hierárquica dos contatos}\label{hier_bound_sim}
 
-A proposta dessa metodologia é avaliar a incerteza do modelo geológico multi-categórico simulando os contatos entre os diferentes domínios com base no método proposto por \citeonline{wilde2012kriging}. Os resultados são obtidos a partir dos furos de sondagem compositados, apresentando coordenadas X, Y e Z e propriedade categórica que representa as diferentes litologias do depósito. O método de \citeonline{wilde2012kriging} pode ser aplicado apenas a casos binários e fazer sua aplicação ingenuamente em casos de múltiplos domínios é demorado, subjetivo e pode causar sobreposição de blocos atribuídos à diferentes categorias em diferentes realizações ou produzir blocos não atribuídos à nenhuma categoria em algumas das realizações. Por esse motivo, essa tese propõe um algoritmo para agrupar automaticamente as diferentes litologias e um fluxo de trabalho para simular cada grupo individualmente e, em seguida, reconstruir o modelo geológico multi-categórico, a partir do agrupamento, de forma hierárquica. 
+A proposta dessa metodologia é avaliar a incerteza do modelo geológico multi-categórico simulando os contatos entre os diferentes domínios com base no método proposto por \citeonline{wilde2012kriging}. Os resultados são obtidos a partir dos furos de sondagem compositados, apresentando coordenadas X, Y e Z e propriedade categórica que representa as diferentes litologias do depósito. O método de \citeonline{wilde2012kriging} pode ser aplicado apenas a casos binários e fazer sua aplicação ingenuamente em casos de múltiplos domínios é demorado, subjetivo e pode causar sobreposição de blocos atribuídos à diferentes categorias em diferentes realizações ou produzir blocos não atribuídos à nenhuma categoria em algumas das realizações. Por esse motivo, essa tese propõe um algoritmo para agrupar automaticamente as diferentes litologias e um fluxo de trabalho para simular cada grupo individualmente e, em seguida, reconstruir o modelo geológico multi-categórico, a partir do agrupamento, de forma hierárquica.
 
 A metodologia foi inicialmente proposta por \citeonline{amarante_incerteza_associada} e foi posteriormente aprimorada tendo sua subjetividade reduzida e automatização aumentada \cite{amarante2021boundary}. Um outro estudo de caso foi conduzido em um banco de dados de ferro por \citeonline{amarante2019assessing} e o método se mostrou competente, apresentando resultados melhores em relação a outros métodos concorrentes.
 
@@ -422,7 +422,7 @@ As realizações de cada grupo devem ser sobrepostas para gerar uma realização
 
 A \autoref{fig:jura_reals} mostra duas, de 10 realizações, para o modelo geológico. Uma animação das 10 realizações pode ser vista \href{https://github.com/robertorolo/hierarchical_boundary_simulation/blob/main/jura_gif.gif}{aqui}.
 
-\begin{figure}[H] 
+\begin{figure}[H]
     \centering
     \caption{Duas realizações para o modelo geológico para o \textit{Swiss Jura}.} \label{fig:jura_reals}
      \subfloat[][Realização 1.]{\includegraphics[width=.45\textwidth]{capitulo_3/imagens/geomodel_0.png}\label{<figure1>}}
@@ -510,19 +510,18 @@ Os valores escolhidos foram 5\%, 0,5\%, 2,5\% e 10\% de taxas de classificação
 
 As funções distância calculadas para cada grupo foram modificadas com o parâmetro C escolhido, adicionando C às amostras codificadas como 0 e subtraindo C das amostras codificadas como 1. As distâncias modificadas para cada grupo foram então interpoladas para todos os nós do \textit{grid}. As funções de base radial foram escolhidas para interpolar a função distância para um \textit{grid} com dimensões de bloco de 25x25x15 metros. O \textit{kernel} RBF é Gaussiano com efeito pepita de 0,001\% para evitar instabilidades nas matrizes. O suporte dos \textit{kernels} é o alcance dos variogramas dos indicadores de cada grupo (\autoref{fig:cs_variograms}). As razões de anisotropia de cada grupo também foram consideradas.
 
-A zona de incerteza é obtida a partir dos modelos implícitos interpolados, truncando-os entre $-C$ e $+C$. Simulações não condicionais foram realizadas nesta região, e cada realização das simulações é transformada para que seus valores estejam entre $-C$ e $+ C$ a partir da \autoref{sim_trans}. Equivalentes Gaussianos aos variogramas dos indicadores foram utilizados para simular cada um dos grupos. Dez realizações foram geradas para cada grupo comparando o valor simulado com os valores interpolados dentro da zona de incerteza. 
+A zona de incerteza é obtida a partir dos modelos implícitos interpolados, truncando-os entre $-C$ e $+C$. Simulações não condicionais foram realizadas nesta região, e cada realização das simulações é transformada para que seus valores estejam entre $-C$ e $+ C$ a partir da \autoref{sim_trans}. Equivalentes Gaussianos aos variogramas dos indicadores foram utilizados para simular cada um dos grupos. Dez realizações foram geradas para cada grupo comparando o valor simulado com os valores interpolados dentro da zona de incerteza.
 
 As realizações para cada grupo devem ser sobrepostas, respeitando a regra de hierarquização da \autoref{fig:groupingcp}, para gerar uma realização para o modelo geológico. Além disso, as realizações são mescladas respeitando seu índice. A realização 2 obtida na simulação de cada grupo é usada para construir a realização 2 do modelo geológico hierárquico.
 
 A \autoref{cobre_reals} mostra uma seção vertical e uma horizontal para duas realizações do modelo geológico juntamente com os dados amostrais em suporte pontual. Uma animação mostrando seções verticais em XZ das 10 realizações executadas pode ser vista \href{https://github.com/robertorolo/hierarchical_boundary_simulation/blob/main/copper_gif.gif}{aqui}.
 
 \begin{figure}[H]
+	\caption{ Visão em perspectiva de seções verticais e horizontais de duas realizações do modelo geológico juntamente com as amostras em suporte pontual.}\label{cobre_reals}
 	\centering
-	\label{cobre_reals}
-	\caption{ Visão em perspectiva de seções verticais e horizontais de duas realizações do modelo geológico juntamente com as amostras em suporte pontual.}
-		\subfloat[][Realização 1]{\includegraphics[width=0.45\textwidth]{capitulo_3/imagens/real0cp.png}\label{fig:g1}}
-     \hspace{1em}
-     \subfloat[][Realização 2]{\includegraphics[width=0.45\textwidth]{capitulo_3/imagens/real1cp.png}\label{fig:g2}}
+	\subfloat[][Realização 1]{\includegraphics[width=0.45\textwidth]{capitulo_3/imagens/real0cp.png}\label{fig:g1}}
+	\hspace{1em}
+	\subfloat[][Realização 2]{\includegraphics[width=0.45\textwidth]{capitulo_3/imagens/real1cp.png}\label{fig:g2}}
 \end{figure}
 
 \subsection{Discussão}
@@ -583,7 +582,7 @@ Por ser baseado em interpolação global, o método baseado na parametrização 
 
 O uso de uma zona de incerteza combinada como uma simulação não condicional, que apresente continuidade espacial, torna os métodos propostos mais fiéis no sentido de gerar estruturas geológicas realistas quando comparados à SISIM, que vai simular todos os nós do \textit{grid}. A SISIM, quando pós processada usando MAPS, gera formas realistas em depósitos pouco erráticos e com alta densidade amostral, como foi demonstrado no estudo de caso para o depósito de ouro da \autoref{estudo_ouro}, onde a SISIM - MAPS produziu formas que não divergem significativamente das formas interpretadas pelo geomodelador ou produzidas pela metodologia proposta. Já em depósitos com maior erraticidade e menor densidade amostral, como é o caso do depósito de cobre da \autoref{estudo_cobre}, a definição de uma zona de incerteza ao redor dos contatos se mostra vantajosa no sentido de gerar estruturas realistas tendo em vista que os modelos gerados pela metodologia proposta apresentam estruturas com menor variabilidade e maior continuidade espacial em relação às geradas pela SISIM - MAPS. Entretanto, é importante frisar que diferentes metodologias devem ser aplicadas para diferentes objetivos. Se as proporções das categorias observadas nos dados e a continuidade espacial dos indicadores deve ser reproduzida, a SISIM deve ser aplicada. Se há restrição na posição relativa das categorias, algum método da família Gaussiana truncada deve ser aplicado. Se houver informação estrutural e a posição real dos contatos em subsuperfície, o método dos campos potenciais deve ser utilizado. E assim por diante...
 
-Embora os métodos propostos criem modelos realistas de forma rápida e direta, eles não devem ser aplicados a todos os tipos de depósito de forma indiscriminada. Nenhum dos métodos leva em consideração elementos estruturais da geologia e também não dão tratamento diferenciados para estruturas específicas como dobras, diques, falhas ou lentes. A reprodução desse tipo de estrutura em três dimensões por métodos de modelagem geológica automáticos geralmente não é satisfatória. Entretanto, os métodos propostos podem ser aplicados em fases iniciais da pesquisa mineral, para bancos de dados em 2D, para depósitos de baixa complexidade geológica, para depósitos de média complexidade geológica e alta densidade amostral ou podem ainda ter suas realizações refinadas manualmente por um geomodelador experiente poupando tempo e esforço do profissional.  
+Embora os métodos propostos criem modelos realistas de forma rápida e direta, eles não devem ser aplicados a todos os tipos de depósito de forma indiscriminada. Nenhum dos métodos leva em consideração elementos estruturais da geologia e também não dão tratamento diferenciados para estruturas específicas como dobras, diques, falhas ou lentes. A reprodução desse tipo de estrutura em três dimensões por métodos de modelagem geológica automáticos geralmente não é satisfatória. Entretanto, os métodos propostos podem ser aplicados em fases iniciais da pesquisa mineral, para bancos de dados em 2D, para depósitos de baixa complexidade geológica, para depósitos de média complexidade geológica e alta densidade amostral ou podem ainda ter suas realizações refinadas manualmente por um geomodelador experiente poupando tempo e esforço do profissional.
 
 A validação de simulações para modelo geológicos multi-categóricos é especialmente difícil. Nessa tese apenas a reprodução das amostras e checagem visual de seções foram aplicadas. Caso haja confiança de que a amostragem seja representativa das proporções de cada uma das litologias do depósito mineral deve-se verificar a reprodução das proporções. A reprodução dos variogramas dos indicadores para todas as categorias de um modelo multi-categórico de forma simultânea é um evento raro mesmo em bancos de dados de geometria simples em 2D. As estruturas geológicas, muitas vezes, são curvilineares e sua continuidade espacial não pode ser capturada por variogramas "tradicionais". A modelagem implícita tende a gerar estruturas em formatos esféricos/elípticos ("\textit{blobs}") ao redor das amostras, e em forma de salsicha em torno de furos de sondagem. O surgimento desse tipo de estrutura indica que os modelos não são satisfatórios e alguma mudança nos parâmetros ou método utilizado para construção dos modelos deve ser feita.
 
