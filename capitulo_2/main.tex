@@ -6,11 +6,50 @@ Esse capítulo é uma revisão da literatura em modelagem geológica automática
 
 A dispendiosidade na construção e a inflexibilidade dos modelos explícitos impulsionaram o desenvolvimento de técnicas de modelagem geológica automáticas. As técnicas determinísticas geram apenas um único modelo, consequentemente, não possibilitando a avaliação da incerteza associada ao modelo geológico. 
 
-Métodos matemáticos menos sofisticados, como o vizinho mais próximo podem ser utilizados na criação automática de modelos geológicos determinísticos. Esse algoritmo constrói ao redor de cada amostra sua área de influência, ou volume de influência em três dimensões. A toda a área de influência é atribuída a categoria, ou litologia, correspondente àquela amostra. 
+\subsection{Vizinho mais próximo}
+
+Métodos geométricos menos sofisticados, como o vizinho mais próximo podem ser utilizados na criação automática de modelos geológicos determinísticos. Esse algoritmo constrói ao redor de cada amostra sua área de influência, ou volume de influência em três dimensões. A toda a área de influência é atribuída a categoria, ou litologia, correspondente àquela amostra. 
+
+\subsection{Aprendizado de máquina}
 
 Métodos baseados em aprendizado de máquina também podem ser utilizados. \citeonline{smirnoff2008support} propuseram o uso de máquina de vetores de suporte (\textit{support vector machine}) para a criação de modelos geológicos determinísticos multi-categóricos a partir de amostras esparsas de diferentes origens.
 
-Métodos geoestatísticos também têm aplicação na criação de modelos geológicos de forma automática, a krigagem dos indicadores \cite{alabert1987stochastic} consiste na geração de uma distribuição acumulada de probabilidades a partir da transformação não linear dos dados. Para variáveis categóricas, é possível estimar diretamente a probabilidade de cada local não amostrado pertencer a cada uma das diferentes litologias do depósito mineral. A partir das probabilidades um modelo geológico pode ser criado.
+\subsection{Krigagem dos indicadores}\label{ik}
+
+Considere $\{S(\alpha), \alpha=1,...,n\}$ o conjunto de observações do atributo categórico s medidos em cada local $\alpha$. O conjunto dos K possíveis estados $s_{k}$ que cada valor $S(\alpha)$ pode assumir é denotado por $\{s_{1}, ..., s_{k}\}$. Por exemplo, $s(\alpha)=s_{k}$ se o estado $s_{k}$ foi observado no enésimo local $\alpha$.
+
+Os estados K são exaustivos e mutualmente excludentes, já que cada indivíduo pertence a um e apenas um estado $s_{k}$. O histograma de dados categóricos é completamente descrito por uma tabela de frequência , que lista os K estados se sua frequência de ocorrência. A frequência de ocorrência do estado $s_{k}$, denotada por $f(s_{k})$, pode ser expressa como uma média aritmética dos n indicadores de acordo com a \autoref{ik1} \cite{goovaerts1997geostatistics}:
+
+\begin{equation}
+	f(s_{k})=\frac{1}{n}\sum_{\alpha=1}^{n}i(\alpha;s_{k})
+	\label{ik1}
+\end{equation}
+
+Onde os indicadores $i(\alpha;s_{k})$ associados com cada enésimo indivíduos pode assumir o valor se o estado $s_{k}$ for observado, e 0 caso contrário.
+
+Considere o problema em modelar a incerteza acerca do estado $s_{k}$ do atributo categ;orico s no local não amostrado u. Para o nível de informação (n) essa incerteza é modelada a partir da função de distribuição de probabilidade condicional (ccdf) da variável discreta s(u) de acordo com a \autoref{ik2}:
+
+\begin{equation}
+	(p(u;s_{k})|(n))=Prob(S(u)=s_{k}|(n)), k=1,...,n
+	\label{ik2}
+\end{equation}
+
+Onde a informação condicionante consiste nos n dados categóricos $s(u_{\alpha})$ vizinhos.
+
+Cada probabilidade condicional $p(u;s_{k})$ é também o valor esperado condicional do indicador da classe, dada a informação (n). Como mostrado na \autoref{ik3}:
+
+\begin{equation}
+	(p(u;s_{k})|(n))=E(I(u;s_{k})|(n))
+	\label{ik3}
+\end{equation}
+
+Com $I(u;s_{k})=1$ se $S(u)=s_{k}$ e 0 caso contrário. Então o ccdf da variável categórica $S(u)$ pode ser modelado a partir da krigagem dos indicadores que é um estimador da média (valor esperado).
+
+O algoritmo apresentado pode ser usado para estimar cada probabilidade condicional $(p(u;s_{k})|(n))$ como uma combinação linear dos indicadores $I(u;s_{k})$ na vizinhança de busca.
+
+Em cada local estimado u a probabilidade deve estar entre  [0,1] e seu somatório deve ser 1. Em alguns casos os pesos de krigagem podem acarretar estimativas que não obedecem esses requisitos. Nesses casos deve ser feita a correção de relação de ordem. A categoria escolhida para cada nó, é aquela com maior probabilidade de ocorrência.
+
+\subsection{Métodos implícitos}
  
 A família de métodos ditos métodos implícitos compreendem técnicas importadas da computação gráfica. O uso da modelagem implícita foi introduzida no campo da computação gráfica para a geração de objetos de diferentes geometrias e complexidades por  \citeonline{bloomenthal1997introduction}. A ideia geral é usar uma função implícita para demarcar regiões de diferentes formas e extensões no espaço. \citeonline{cowan2002rapid} e \citeonline{cowan2003practical} popularizaram a modelagem implícita no contexto geológico, baseados no trabalho de \citeonline{savchenko}, que modela objetos tridimensionais a partir de dados esparsos interpolando uma função volume.
 
@@ -42,7 +81,7 @@ Portlandian; e Quartenary}. A área é coberta parcialmente com amostras uniform
 	\includegraphics[width=0.6\textwidth]{capitulo_2/imagens/points.png}
 \end{figure}
 
-\subsubsection{Cálculo das distâncias assinaladas}
+\subsubsection{Cálculo das distâncias assinaladas}\label{calc_dist}
 
 O primeiro passo no cálculo das distâncias assinaladas é transformar as amostras ${z(u_\alpha),\alpha=1,...,n}$ em indicadores binários de acordo com a \autoref{eq_ind}, especificando se a amostra pertence ou não ao domínio $k$ que está sendo modelado.
 
@@ -72,7 +111,7 @@ O segundo passo é o cálculo das distâncias assinaladas. Para cada ponto amost
 Desse modo, o valor da função distância assinalada $d_k$ para a o domínio $k$ modelado no local $u_\alpha$ é:
 
 \begin{equation}
-	d_k(u_\alpha)=\begin{cases}
+	d_{k}(u_{\alpha})=\begin{cases}
 	-\parallel u_\alpha-u_\beta\parallel,\:\textrm{se $u_\alpha$ pertence ao domínio}\\
 	+\parallel u_\alpha-u_\beta\parallel,\:\textrm{se $u_\alpha$ não pertence ao domínio}\end{cases}
     \label{eq_mult_sg}
@@ -547,13 +586,106 @@ Os autores propõe uma solução usando indicadores, nesse caso, a isosuperfíci
 
 A necessidade de avaliação da incerteza associada ao modelo geológico impulsionou o desenvolvimento de métodos estocásticos baseados em múltiplas realizações equiprováveis de um atributo. Esses métodos podem ser divididos em dois grupos: métodos baseados em objetos e métodos baseados em células. 
 
-Os métodos baseados em objetos \cite{pyrcz2014geostatistical} têm como objetivo a reprodução da morfologia do depósito, como canais meandrantes em um meio fluvial por exemplo. Geralmente os modelos não são condicionados às amostras. Métodos baseados em objetos ainda não têm muita aplicação na mineração encontrando uso na modelagem de depósitos de óleo e gás.
+\subsection{Métodos baseados em objetos}
 
-Os métodos baseados em células, em contrapartida, são condicionados pelas amostras e são utilizados amplamente pela indústria da mineração. Um dos principais métodos desse grupo é a simulação sequencial dos indicadores \cite{alabert1987stochastic}. O algoritmo é robusto e proporciona uma maneira simples e direta de incorporar a incerteza em modelos geológicos multi-categóricos. Entretanto, os modelos podem apresentar uma aparência ruidosa e não realista do ponto de vista geológico \cite{deutsch2006sequential}.
+Os métodos baseados em objetos \cite{pyrcz2014geostatistical} têm como objetivo a reprodução da morfologia do depósito, como canais meandrantes em um meio fluvial por exemplo. Geralmente os modelos não são condicionados às amostras. Métodos baseados em objetos ainda não têm muita aplicação na mineração encontrando uso na modelagem de reservatórios de óleo e gás.
 
-Na simulação sequencial dos indicadores, os nós do \textit{grid} são visitados segundo um caminho aleatório. Uma distribuição condicional de probabilidades é construída em cada nó do \textit{grid,} a partir das amostras e dos nós previamente simulados dentro de um raio de busca. Então, uma categoria é amostrada aleatoriamente da distribuição e atribuída àquele nó.  
+\subsection{Métodos baseados em células}
 
-Um outro método que se baseia no mesmo princípio é a simulação geostatística multi-ponto (MPS). Esse método utiliza imagens de treinamento para construir a distribuição condicional de probabilidades em cada nó do \textit{grid}. Cada realização deve reproduzir as características geológicas da imagem de treinamento. O método foi inicialmente proposto por \citeonline{guardiano1993multivariate}, porém, diferentes variantes foram desenvolvidas ao longo do tempo \cite{strebelle, boucher2009considering}.
+Os métodos baseados em células, em contrapartida, são condicionados pelas amostras e são utilizados amplamente pela indústria da mineração. 
+
+\subsubsection{Simulação sequencial dos indicadores}
+
+Um dos principais métodos desse grupo é a simulação sequencial dos indicadores \cite{alabert1987stochastic}. O algoritmo é robusto e proporciona uma maneira simples e direta de incorporar a incerteza em modelos geológicos multi-categóricos. Entretanto, os modelos podem apresentar uma aparência ruidosa e não realista do ponto de vista geológico \cite{deutsch2006sequential}.
+
+Seja $F(u;z|(n))$ a distribuição condicional acumulada (ccdf) que modela a incerteza a respeito de $z(u)$ desconhecido. É possível amostrar desse ccdf uma série de L valores simulados $z^{(l)}(u)$. Cada valor representa uma possível realização da variável aleatória $Z(u)$.
+
+A simulação de Monte-Carlo funciona da seguinte maneira \cite{goovaerts1997geostatistics}:
+
+\begin{enumerate}
+	\item Uma série de L valores independentes e aleatórios $p^{l}$ uniformemente distribuídos no intervalo [0,1] são amostrados;
+	\item O l-ésimo valor simulado $z^{(l)}(u)$ é associado o $p^{l}$-ésimo quantil do ccf.
+\end{enumerate}
+
+Da mesma forma que uma série de valores podem ser tomados de um ccdf univariado, um conjunto de mapas simulados $\{z^{(l)}(u'_{j}), j=1,...,N\}, l-1,...,L$ pode ser gerado tomando valores de ccdf N-variado que modela a incerteza conjunta em N locais $u'_{j}$.
+
+Seja  $\{Z(u'_{j}), j=1,...,N\}$ um conjunto de variáveis aleatórias definidas em N locais $u'_{j}$
+dentro da área em estudo A. O obejtivo das simulações é gerar diversas realizações conjuntas dessas N variáveis aleatórias. Como mostrado na \autoref{sisim_1}:
+
+\begin{equation}
+	\{z^{(l)}(u'_{j}), j=1,...,N\}
+	\label{sisim_1}
+\end{equation}
+
+Condicionadas ao dados $\{z(u_{\alpha}), \alpha=1,...,n\}$.
+ 
+Considerando a simulação conjunta de valores em z em apenas dois lugares $u'_{1}$ e  $u'_{2}$. Um conjunto de pares de realizações $\{z^{(l)}(u'_{1}), z^{(l)(u'_{2})}\},l=1,...,L$ pode ser gerado tomando valores do ccdf bivariado. De acordo com a \autoref{sisim_2}:
+ 	
+\begin{equation}
+	F(u'_{1}, u'_{2}, z_{1}, z_{2}|(n)) = Prob\{Z(u'_{1})\leq z_{1}, Z(u'_{2})\leq z_{2}|(n)\}
+	\label{sisim_2}
+\end{equation}
+ 	
+O axioma de Bayes diz que quaisquer ccdfs bivariados podem ser expressos como um produto de ccdfs univariados (\autoref{sisim_3}): 
+
+\begin{equation}
+	F(u'_{1}, u'_{1}, z_{1}, z_{2}|(n)) = F(u'_{2}, z_{2}|(n+1))F(u'_{1}, z_{1}|(n))
+	\label{sisim_3}
+\end{equation}
+
+Onde $(n+1)$ denota a condicionalidade aos n valores $Z(u_{\alpha})$ e também à realização $Z(u'_{1})=z^{(l)}(u'_{1})$. A decomposição permite gerar o par $\{z^{(l)}(u'_{1}), z^{(l)}(u'_{2})\}$ em dois passos:
+  
+\begin{enumerate}
+ 	\item O valor $z^{(l)}(u'_{1})$ é tomado do ccdf $F(u'_{1}, z_{1}|(n))$;
+ 	\item Então o ccdf no lugar $u'_{2}$ é condicionado à realização $z^{(l)}(u'_{1})$ e também as dados, e ao tomar um valor $z^{(l)}(u'_{2})$ desse ccdf, garante-se a correlação.
+\end{enumerate}
+
+A ideia aqui é trocar a modelagem e tomada do valor aleatório do ccdf bivariado pela tomada sequencial de valores em dois ccdfs univariados, que são mais facilmente inferidos, daí o nome simulação sequencial.
+
+Esse princípio pode ser generalizado para mais de dois lugares. Aplicando o axioma de Bayes recursivamente, o ccdf N-variado pode ser escrito como o produto de N ccdfs univariados da seguinte forma \cite{goovaerts1997geostatistics}:
+
+\begin{enumerate}
+	\item O ccdf no primeiro lugar $(u'_{1})$ é modelado, condicionado aos n dados originais $z(u_{\alpha})$;
+	\item Tome desse ccdf uma realização $z^{(l)}(u'_{1})$ que será dado condicionate de todos os ccdfs que serão construídos futuramente;
+	\item No i-ésimo nó  $u'_{i}$ visitado, o ccdf será modelado a partir dos n dados originais e também de todos os (i-1) valores $z^{(l)}(u'_{j})$ simulados nos nós $u'_{j}$ já visitados, $j=1,...,i-1$;
+	\item Tome desse ccdf uma realização $z^{(l)}(u'_{i})$ que será dado condicionante de todos os ccdfs que serão contruídos futuramente;
+	\item Os dois últimos passos são repetidos até que todos os N nós forem visitados.
+\end{enumerate}
+
+O conjunto dos valores simulados $z^{(l)}(u'_{j}), j=1,...,N$ representa uma realização da função aleatória $Z(u)$ em todos os nós $u'_{j}$. Qualquer número L de realizações pode ser obtido repetindo o processo L vezes, com diferentes caminhos de visitas aos nós.
+
+Esse processo garante a reprodução do modelo de covariância.
+
+Para simular variáveis categóricas os ccdfs devem ser construídos a partir da krigagem dos indicadores apresentada na \autoref{ik}.
+
+\subsubsection{Simulação geostatística multi-ponto}
+
+A simulação sequencial dos indicadores constrói a função de distribuição acumulada $F(u;z|(n))$ a partir da krigagem dos indicadores $i(u_{\alpha}, s_{k})$ em qualquer localização u não medida $I(u;s_{k})$.
+
+Na simulação geoestatística multi-ponto a função de distribuição acumulada é construída na localização u não amostrada através da relação de Bayes \autoref{mps_1}:
+
+\begin{equation}
+	Prob(I(u;s_{k})=1|i(u_{\alpha}, s_{k})=1)=\frac{Prob[I(u;s_{k})=1|i(u_{\alpha}, s_{k})=1]]}{Prob[i(u_{\alpha}, s_{k})=1]}
+	\label{mps_1}
+\end{equation}
+
+Onde, $	Prob(I(u;s_{k})=1|i(u_{\alpha}, s_{k})=1)$ é igual a $[I(u;s_{k})]^{*}_{kst}$ conforme \citeonline{guardiano1993multivariate}.
+
+Essa interpretação probabilística da krigagem simples dos indicadores permite acessar a conectividade espacial de múltiplos pontos pertencentes a um modelo exaustivo (imagem de treinamento), delimitados por um domínio $\tau_{\pi}$ e definidos por n vetores separados $h_{1}, ..., h_{n}$ como mostrado por \citeonline{alves_dissertacao}.
+
+\begin{equation}
+	\phi(h_{1}, ..., h_{n};z)=E\{\prod_{\alpha=1}^{n}I(u+h_{\alpha};k)\}
+\end{equation}
+
+Onde $\phi(h_{1}, ..., h_{n};z)$ poer lido como a covariância entre múltiplos pontos separados por n vetores $h_{1}, ..., h_{n}$ (os vetores são os limites de$\tau_{\pi}$ ).
+
+A imagem de treinamento (training image - TI) é a ferramenta geoestatística utilizada para capturar a conectividade espacial entre os múltiplos pontos. A TI pode ser definida como um modelo conceitual, que imita os padrões espaciais e estruturais das heterogeneidades presentes em subsuperfície. Geralmente, a modelagem dessas imagens é baseada em afloramentos, imagens de sensoriamento remoto, modelos análogos e interpretação geológica
+
+O processo de varredura da imagem de treinamento é realizado a partir de um template ou vizinhança de busca $\tau_{j}$, composto de um conjunto de j vetores $\{h_j, j=1,...,J\}$ que informa quais pontos da TI serão considerados relevantes em relação a um ponto central  do nó do grid a ser simulado.
+
+Entretanto, como este método exige que a varredura da imagem de treinamento seja realizada para cada nó do grid não amostrado durante a simulação, é demandado de um grande esforço computacional. Como alternativa, \citeonline{strebelle} propôs varrer a imagem de treinamento uma única vez, na qual os padrões da TI são armazenados em um arquivo, denominado árvore de busca ou \textit{search tree}, que possibilita o acesso as informações para cada nó não amostrado simulado \cite{amarante_dissertacao}.
+
+\subsubsection{Métodos Gaussianos truncados}
 
 Há ainda a família dos métodos Gaussianos truncados. Esses métodos são aplicados, geralmente, quando as litologias ocorrem em uma ordem fixa, como em sequências estratigráficas por exemplo. A ideia básica por trás da simulação Gaussiana truncada \cite{matheron1987conditional} é simular uma variável Gaussiana em cada célula do \textit{grid} e então aplicar uma regra de truncagem para converter os valores Gaussianos contínuos em valores categóricos.
 
@@ -563,13 +695,15 @@ O conceito de usar a regra de truncagem em mais de uma dimensão para transforma
 
 Por isso, uma nova adaptação foi desenvolvida: \citeonline{silva2019multivariate} propuseram a simulação pluri-Gaussiana truncada hierárquica. Esse método utiliza uma estrutura em árvore para definir diferentes regras de truncagem em uma única dimensão. Isso facilita a definição do mapeamento entre espaço contínuo (Gaussiano) e categórico, tornando possível a utilização eficiente de qualquer número de variáveis Gaussianas para a modelagem de uma variável categórica.
 
+\subsubsection{Métodos implícitos}
+
 No braço dos métodos implícitos, alguns autores desenvolveram técnicas para avaliar a incerteza dos modelos geológicos. Avaliar a incerteza em relação à posição dos contatos a partir dos campos potenciais é uma  processo direto. \citeonline{gonccalves2017machine} deram uma abordagem de aprendizagem de máquinas para o método possibilitando a avaliação de incerteza. \citeonline{de2019gempy} desenvolveram uma ferramenta de modelagem geológica estocástica de código aberto que avalia a incerteza usando campos potenciais combinados com uma abordagem Bayesiana.
 
 Outros autores construíram modelos implícitos e avaliaram a incerteza do modelo geológico usando dados estruturais. \citeonline{lindsay2012locating} examinaram a incerteza introduzida pelos dados de orientação geológica, produzindo um conjunto de modelos 3D implícitos gerados a partir de medições de orientação sujeitas a simulações de incerteza. \citeonline{pakyuz2018monte} estudaram o efeito da propagação da incerteza dos dados estruturais de entrada na modelagem geológica 3D implícita. \citeonline{caumon2007elements} avaliaram a incerteza do modelo geológico ao perturbar os parâmetros geológicos, como superfícies de falha e horizonte de alteração.
 
-Também existem na literatura métodos de avaliação de incerteza baseados em distâncias assinaladas, as próximas seções apresentam os principais. Alguns desses, que são base para alguns dos métodos propostos no \autoref{chap3}, serão abordados com mais profundidade.
+Também existem na literatura métodos de avaliação de incerteza baseados em distâncias assinaladas, as próximas seções apresentam os principais. Alguns desses, que são base para alguns dos métodos propostos no \autoref{chap3}, serão abordados com maior profundidade.
 
-\subsection{Avaliação heurística da incerteza}\label{heuristic}
+\subsubsubsection{Avaliação heurística da incerteza}\label{heuristic}
 
 O método mais simples de avaliação de incerteza em modelos geológicos implícitos, proposto por \citeonline{silvaanddeutschccgmodeling}, consiste em transformar distâncias estimadas em probabilidades via \textit{softmax transformation}. Técnica amplamente usada em métodos de classificação para múltiplas classes \cite{mccullaghgeneralizedlinear}. A ideia é transformar as distâncias estimadas em probabilidades a partir da \autoref{eq_softmax}. Os valores transformados encontram-se entre zero e um e sua soma deve ser igual a um, para cada bloco em que as distâncias assinaladas forem estimadas.
 
@@ -615,7 +749,7 @@ A \autoref{jura_prob} mostra, à esquerda, as probabilidades para a categoria Qu
 
 Apesar do método ser simples e direto, suportar múltiplas categorias simultaneamente, seu resultado não pode ser utilizado em etapas subsequentes do processo de  avaliação de recursos, por não gerar múltiplas realizações do modelo geológico.
 
-\subsection{\textit{Boundsim}}
+\subsubsubsection{\textit{Boundsim}}
 
 Uma outra metodologia proposta por \citeonline{mclennanstationarity, mclennan2006boundsim} consiste em realizar um \textit{bootstrap} espacial \cite{deutsh_spatial_bootstrap} da média da distância assinalada calculada para uma dada categoria. O procedimento de \textit{bootstrap} é amplamente utilizado para quantificar incerteza em parâmetros estatísticos. As duas mais importantes suposições são: os dados são representativos e os dados são independentes. Por esse motivo, a técnica de amostragem deve ser modificada para variáveis que apresentam continuidade espacial. 
 
@@ -627,7 +761,7 @@ A metodologia é simples e direta, porém, deve ser aplicada à uma categoria po
 
 O produto final do método pode ser utilizado nas etapas subsequentes do processo de avaliação, todavia, o método não avalia incerteza de forma adequada. Os autores do estudo original aplicaram a metodologia apenas em bancos de dados sintéticos e de geometria regular. 
 
-\subsection{Condicionamento das amostras}\label{chap:cond_amo}
+\subsubsubsection{Condicionamento das amostras}\label{chap:cond_amo}
 
 \citeonline{mclennanstationarity} também propôs uma metodologia baseada na parametrização das amostras e posterior estimativas. Os pesos de krigagem e da interpolação pelo inverso da distância dependem do arranjo geométrico das amostras mas não dos valores das amostras. A proposta é alterar os pesos dados às amostras a partir de um fator de condicionamento $f^{DC}_i(u)$, como apresentado na \autoref{estimador_cond}
 
@@ -653,7 +787,7 @@ A magnitude da diferença pode ser acentuada usando uma função quadrática (Fi
 
 \citeonline{mclennanstationarity} sugere o uso da interpolação pelo inverso da distância ao invés da krigagem porque os pesos negativos, que podem ser produzidos pela krigagem, interferem com o fator de parametrização.
 
-\subsection{Simulação direta das distâncias assinaladas}\label{sim_direta}
+\subsubsubsection{Simulação direta das distâncias assinaladas}\label{sim_direta}
 
 \citeonline{caceres2011stochastic} e \citeonline{radtke_dissertacao} propuseram que as distâncias assinaladas sejam simuladas de forma direta: a partir de um modelo geológico implícito multi categórico, como o mostrado na \autoref{multicat_jura}, um coeficiente U de incerteza deve ser calculado de acordo com \autoref{u_eq}:
 
@@ -687,23 +821,23 @@ O método é baseado em múltiplas realizações do modelo geológico, então, s
 
 Além disso, a simulação é muito sensível aos parâmetros, o que muitas vezes, gera modelos com excessivo ruído, que não são geologicamente realistas, e não honram as amostras. O resultado final não justifica o número demasiado de passos e parâmetros. O coeficiente U não controla a magnitude da incerteza, apenas diminui o tempo das simulações, a magnitude da incerteza é controlada pelos parâmetros da simulação.
 
-\subsection{Avaliação de incerteza usando imagens de treinamento para simulação multi-ponto geradas a partir dos dados}
+\subsubsubsection{Avaliação de incerteza usando imagens de treinamento para simulação multi-ponto geradas a partir dos dados}
 
 \citeonline{silvaenhancedgeomodeling} propôs uma metodologia que integra modelagem geológica implícita com funções distâncias assinaladas e simulação geostatística multi ponto. A geostatística multi-ponto utiliza imagens de treinamento para extrair e reproduzir estruturas geológicas complexas. Geralmente, imagens de treinamento são baseadas em modelos conceituais do fenômeno geológico. Em seu trabalho, \citeonline{silvaenhancedgeomodeling} cria imagens de treinamento a partir de modelos geológicos implícitos determinísticos criados com funções distância assinaladas e modelos estocásticos criados por simulação sequencial dos indicadores. No trabalho, é introduzida uma metodologia  para integrar múltiplas imagens de treinamento, uma metodologia para calibrar a contribuição de cada imagem de treinamento e uma medida de entropia multi-ponto ao longo dos furos de sondagem.
 
 \citeonline{silvaenhancedgeomodeling} concluiu que imagens de treinamento geradas a partir das amostras produzem modelos geológicos estocásticos, por MPS, melhores.
 
-\subsection{Modelagem estocástica de estruturas curvilineares} 
+\subsubsubsection{Modelagem estocástica de estruturas curvilineares} 
 
 \citeonline{lillah2013stochastic} propuseram a modelagem de estruturas curvilineares e a avaliação de incerteza desses modelos usando funções distância assinaladas. A metodologia tradicional é modificada para considerar não estacionariedade na forma de anisotropia variável localmente (LVA), que é incorporada na krigagem e na simulação sequencial Gaussiana das distâncias assinaladas. O campo de anisotropia variável captura a direção local, na qual a unidade geológica é mais contínua; enquanto, a simulação das distâncias e posterior extração da isosuperfície avalia a incerteza volumétrica.
 
-\subsection{Avaliando e visualizando a incerteza com movimento estocástico}
+\subsubsubsection{Avaliando e visualizando a incerteza com movimento estocástico}
 
 \citeonline{yang2019assessing} propuseram uma técnica para avaliar e visualizar a incerteza em modelos geológicos multi-categóricos a partir do movimento estocástico. As unidades litológicas são representadas como uma soma de um modelo implícito estocástico conceitual com uma função residual condicionada às amostras e às relações cronológicas das unidades litológicas. Duas técnicas de amostragem para criação do movimento estocástico são propostas. Uma delas baseada na simulação de Monte Carlo e a outra em cadeias de Markov.
 
 A incerteza é visualizada a partir de um filme no qual a transição entre as realizações é suave.
 
-\subsection{Simulação dos contatos}\label{boundsim}
+\subsubsubsection{Simulação dos contatos}\label{boundsim}
 
 A metodologia proposta por \citeonline{wilde2012kriging} consiste em gerar realizações dos contatos geológicos comparando distâncias modificadas interpoladas com simulações não condicionais. 
 
@@ -738,7 +872,7 @@ Uma curva como a da \autoref{c_calib_grafico} é construída. São escolhidos N 
 \begin{figure}[H]
 	\caption{\label{c_calib_grafico}Figura esquemática da curva de calibração.}
 	\centering
-		\includegraphics[width=0.6\textwidth]{capitulo_2/imagens/calibration.png}
+		\includegraphics[width=0.4\textwidth]{capitulo_2/imagens/calibration.png}
 \end{figure}
 
 \citeonline{manchuck_deutsch_Geometric} sugerem 2,5\% de classificação errônea um nível aceitável para depósitos tabulares, \cite{martin2017implicitmodeling} definiram como 3.9\% para um dos domínios de um depósito de cobre. Uma outra forma de escolha é o método do cotovelo, o valor tomado deve ser o ponto de inflexão da curva de calibração \cite{martin2017implicitmodeling}. C depende do tipo de depósito e da configuração geométrica das amostras. Para depósitos com menor variabilidade, como os de bauxita por exemplo, C deve ser pequeno. Já para depósitos com maior variação, como os de ouro, o valor de C deve ser maior. Para amostragens densas o valor de C deve ser menor em relação à amostragens esparsas. C não deve ser maior do que a malha de sondagem.
