@@ -61,7 +61,7 @@ A aplicação do método, no banco de dados \textit{Swiss Jura}, consiste em cal
 Para cada categoria, há três diferentes cenários que devem ser combinados para criar os modelos geológicos multi-categóricos. Em alguns casos, a combinação do cenário otimista de uma categoria com grande área ou volume com o cenário pessimista de uma categoria de pequena área ou volume pode fazer com que nenhum bloco seja atribuído à categoria de menor proporção em alguns dos $3^K$ modelos gerados, onde K é o número de categorias do banco de dados.
 Para contornar esse problema, os modelos devem passar por um teste de validação. O algoritmo checa se o bloco com o centroide mais próximo a cada amostra foi classificado com a mesma categoria daquela amostra. O usuário seleciona um nível mínimo de reprodução, nesse caso 0.9. Desse modo, modelos que não reproduzam, pelo menos, 90\% dos dados amostrais, são descartados. Dos 243 modelos gerados para o \textit{Swiss Jura} combinando os três cenários para as cinco diferentes categorias, 24 não foram descartados já que reproduzem, pelo menos, 90\% das amostras.
 
-A \autoref{jura_kernel} mostra duas realizações escolhidas aleatoriamente entre as 24 selecionadas, juntamente com as amostras representadas pelos círculos. Uma animação mostrando todas as realizações pode ser vista \href{https://github.com/robertorolo/kernel_support_parametrization_uncertainty_assess/blob/main/ezgif-7-b96e150c9939.gif}{aqui}.
+A \autoref{jura_kernel} mostra duas realizações escolhidas aleatoriamente entre as 24 selecionadas, juntamente com as amostras representadas pelos círculos. O \autoref{psk_res} mostra todas as realizações.
 
 \begin{figure}[H]
     \centering
@@ -91,7 +91,7 @@ Foi utilizada a parametrização linear com \textit{fmin otimista=fmin pessimist
 
 A \autoref{synth_reals} mostra duas realizações aprovadas no critério de aceitação de reprodução dos dados amostrais escolhidas aleatoriamente.
 
-Uma animação mostrando todas as 17 realizações (aprovadas no teste de reprodução) pode ser vista \href{https://github.com/robertorolo/kernel_support_parametrization_uncertainty_assess/blob/main/sec_hole_10.gif}{aqui}.
+O \autoref{psk_res} mostra todas as 17 realizações aprovadas no teste de reprodução das amostras.
 
 \begin{figure}[H]
     \centering
@@ -147,7 +147,7 @@ Finalmente, para gerar várias realizações do modelo geológico, uma categoria
 		\includegraphics[width=0.3\textwidth]{capitulo_3/imagens/sampling_from_dist.png}
 \end{figure}
 
-A \autoref{reals_pfield_jura} mostra, do lado esquerdo, duas realizações diferentes de uma simulação Gaussiana não condicional dentro da zona de incerteza. Ao lado direito, mostra duas realizações do modelo geológico criado pela amostragem de uma categoria extraída das distribuições condicionais locais para o banco de dados \textit{Swiss Jura}. A transição entre as diferentes categorias é suave, pois as simulações Gaussianas têm continuidade espacial. Uma animação mostrando todas as 10 realizações realizadas pode ser vista \href{https://github.com/robertorolo/assessing_geological_model_uncertainty_with_probability_fields/blob/main/jura_gif.gif}{aqui}.
+A \autoref{reals_pfield_jura} mostra, do lado esquerdo, duas realizações diferentes de uma simulação Gaussiana não condicional dentro da zona de incerteza. Ao lado direito, mostra duas realizações do modelo geológico criado pela amostragem de uma categoria extraída das distribuições condicionais locais para o banco de dados \textit{Swiss Jura}. A transição entre as diferentes categorias é suave, pois as simulações Gaussianas têm continuidade espacial. O \autoref{fda_cp_res} mostra todas as 10 realizações produzidas.
 
 \begin{figure}[H]
 	\caption{\label{reals_pfield_jura} Realizações Gaussianas e modelos geológicos correspondentes.}
@@ -231,7 +231,7 @@ Dez realizações de uma simulação não condicional Gaussiana foram realizadas
 
 Uma das técnicas tradicionalmente usadas para modelar geocorpos e avaliar sua incerteza na presença de várias categorias é a simulação sequencial dos indicadores (SISIM). A SISIM foi aplicada ao mesmo banco de dados a fim de comparar os resultados com a metodologia proposta, uma vez que também depende apenas das coordenadas x, y e z dos compósitos e da propriedade categórica.
 
-A \autoref{sec_comp} mostra um comparativo de seções verticais XZ entre a metodologia proposta (\autoref{fig:pfields}), a SISIM (\autoref{fig:sisim}) utilizando o variograma dos indicadores mostrados na \autoref{ouro_vargs}, e um modelo explícito (\autoref{fig:explicit}) elaborado por um geomodelador experiente. Uma animação mostrando as mesmas seções para todas as dez realizações pode ser vista \href{https://github.com/robertorolo/assessing_geological_model_uncertainty_with_probability_fields/blob/main/ezgif-2-802d466feae1.gif}{aqui}. A SISIM gera realizações com uma textura típica \textit{"salt and pepper"} e padrões ruidosos, o que não é geologicamente realista. Foram propostas técnicas para limpar as realizações da SISIM \cite{DEUTSCH1998551, yamamoto2015post}. Uma dessas técnica é chamada MAPS (\textit{maximum a-posteriori selection}), e é comumente utilizada para remover os artefatos ruidosos da SISIM e melhorar a reprodução das proporções das categorias. A Figura \autoref{fig:blsis} mostra seções verticais de uma realização da SISIM pós processada.
+A \autoref{sec_comp} mostra um comparativo de seções verticais XZ entre a metodologia proposta (\autoref{fig:pfields}), a SISIM (\autoref{fig:sisim}) utilizando o variograma dos indicadores mostrados na \autoref{ouro_vargs}, e um modelo explícito (\autoref{fig:explicit}) elaborado por um geomodelador experiente. O \autoref{fda_cp_res} mostra as mesmas seções verticais equidistantes em XZ de todas as 10 realizações produzidas. A SISIM gera realizações com uma textura típica \textit{"salt and pepper"} e padrões ruidosos, o que não é geologicamente realista. Foram propostas técnicas para limpar as realizações da SISIM \cite{DEUTSCH1998551, yamamoto2015post}. Uma dessas técnica é chamada MAPS (\textit{maximum a-posteriori selection}), e é comumente utilizada para remover os artefatos ruidosos da SISIM e melhorar a reprodução das proporções das categorias. A Figura \autoref{fig:blsis} mostra seções verticais de uma realização da SISIM pós processada.
 
 A metodologia proposta cria limites contínuos que são mais semelhantes à interpretação do geomodelador, mesmo quando comparada à SISIM pós processada. A ausência de dados de sondagem é responsável pelas regiões onde a metodologia proposta e o SISIM divergem da interpretação do geomodelador. Como o interpolador é global, não há necessidade configurar estratégia de busca na metodologia proposta ao contrário da SISIM, entretanto, é necessário definir um variograma adicional para a simulação não condicional, em relação aos variogramas para interpolar as distâncias assinaladas ou simular os indicadores na SISIM. Ao contrário da SISIM, o algoritmo não possui mecanismo para respeitar as proporções e reproduzir a continuidade espacial de cada categoria, embora isso possa ser contornado alterando iterativamente os parâmetros e verificando os resultados.
 
@@ -255,7 +255,7 @@ O comportamento dos contatos é controlado pelo variograma usado na simulação 
 		\includegraphics[width=0.6\textwidth]{capitulo_3/imagens/sph_real_0_50_12.png}
 \end{figure}
 
-A magnitude da incerteza é controlada tanto pela largura de zona de incerteza quanto pelo parâmetro $\omega$. Um valor para o parâmetro $\omega$ pode ser escolhido para todos os blocos ou o maior valor absoluto entre as distâncias assinaladas pode ser utilizado como parâmetro $\omega$ bloco a bloco. Nesse caso, somente a largura da banda vai controlar a magnitude da incerteza. Uma animação mostrando 10 realizações feitas para o \textit{Swiss Jura} com o mesmo variograma Gaussiano do exemplo anterior, entretanto, para uma largura da zona de incerteza de 20 metros pode ser vista \href{https://github.com/robertorolo/assessing_geological_model_uncertainty_with_probability_fields/blob/main/ezgif-2-721b458d5c70.gif}{aqui}. Como há mais área para os contatos mudarem de posição, a variação de área é maior do que a observada para a largura de banda de 12 metros.
+A magnitude da incerteza é controlada tanto pela largura de zona de incerteza quanto pelo parâmetro $\omega$. Um valor para o parâmetro $\omega$ pode ser escolhido para todos os blocos ou o maior valor absoluto entre as distâncias assinaladas pode ser utilizado como parâmetro $\omega$ bloco a bloco. Nesse caso, somente a largura da banda vai controlar a magnitude da incerteza. Foram produzidas realizações para o \textit{Swiss Jura} usando zonas de incerteza de 12 e 20 metros. Como há mais área para os contatos mudarem de posição, a variação de área é maior para a zona de zona de incerteza de 20 metros do que a observada para a largura de 12 metros.
 
 O mesmo comportamento é evidenciado pelos mapa de entropia calculados a partir da \autoref{shannon_entr} (e estandardizadas para que os valores estejam entre 0 e 1) para as bandas de incerteza de 12 e 20 metros. Blocos que a entropia tem um valor alto, variam mais entre diferentes categorias nas diferentes realizações.
 
@@ -420,7 +420,7 @@ A figura \autoref{fig:jura_groups} mostra uma realização dos limites simulados
 
 As realizações de cada grupo devem ser sobrepostas para gerar uma realização para o modelo geológico. A categoria correspondente deve ser atribuída a cada nó do \textit{grid} de acordo com as regras de hierarquização da \autoref{fig:groups_fig}. Por exemplo, Kimmeridgian é atribuído a um nó do \textit{grid} se duas condições forem satisfeitas: o bloco pertence à região do grupo 1, classificada com o indicador 1, e pertence à região classificada com o indicador 1 no grupo 2. Da mesma forma, Argovian é atribuído a um nó do \textit{grid} se três condições forem satisfeitas: o bloco pertence à região do grupo 1, classificada com o indicador 0, o bloco pertence à região classificada com o indicador 1 no grupo 3, e o bloco pertence à região classificada com o indicador 1 em grupo 4.
 
-A \autoref{fig:jura_reals} mostra duas, de 10 realizações, para o modelo geológico. Uma animação das 10 realizações pode ser vista \href{https://github.com/robertorolo/hierarchical_boundary_simulation/blob/main/jura_gif.gif}{aqui}.
+A \autoref{fig:jura_reals} mostra duas, de 10 realizações, para o modelo geológico. O \autoref{shc_res} mostra todas as 10 realizações produzidas.
 
 \begin{figure}[H]
     \centering
@@ -514,7 +514,7 @@ A zona de incerteza é obtida a partir dos modelos implícitos interpolados, tru
 
 As realizações para cada grupo devem ser sobrepostas, respeitando a regra de hierarquização da \autoref{fig:groupingcp}, para gerar uma realização para o modelo geológico. Além disso, as realizações são mescladas respeitando seu índice. A realização 2 obtida na simulação de cada grupo é usada para construir a realização 2 do modelo geológico hierárquico.
 
-A \autoref{cobre_reals} mostra uma seção vertical e uma horizontal para duas realizações do modelo geológico juntamente com os dados amostrais em suporte pontual. Uma animação mostrando seções verticais em XZ das 10 realizações executadas pode ser vista \href{https://github.com/robertorolo/hierarchical_boundary_simulation/blob/main/copper_gif.gif}{aqui}.
+A \autoref{cobre_reals} mostra uma seção vertical e uma horizontal para duas realizações do modelo geológico juntamente com os dados amostrais em suporte pontual. O \autoref{shc_res} mostra seções verticais equidistantes em XZ de todas as 10 realizações produzidas.
 
 \begin{figure}[H]
 	\caption{ Visão em perspectiva de seções verticais e horizontais de duas realizações do modelo geológico juntamente com as amostras em suporte pontual.}\label{cobre_reals}

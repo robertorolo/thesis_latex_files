@@ -118,7 +118,7 @@ Uma outra alternativa ao cálculo e modelagem de variogramas é o uso de tabelas
 
 O alcance do variograma, juntamente com a anisotropia, controlam a extensão e forma dos domínios modelados. Os variogramas experimentais das distâncias assinaladas não exibem efeito pepita. Porém, pode ser adicionado arbitrariamente pelo usuário para controlar a interconectividade dos domínios, adicionar ruído ao modelo quando desejável e controlar a extrapolação que pode ser ser excessiva em alguns casos devido à alta continuidade dos modelos Gaussianos.
 
-A \autoref{jura_vargs} mostra o variograma omnidirecional dos indicadores para as categorias do \textit{Swiss Jura}. Os variograma foram modelados com uma estrutura esférica e efeito pepita zero.
+A \autoref{jura_vargs} mostra o variograma omnidirecional dos indicadores para as categorias do \textit{Swiss Jura}. Os variogramas foram modelados com uma estrutura esférica e efeito pepita zero.
 
 \begin{figure}[H]
     \caption{Variogramas omnidirecionais dos indicadores.} \label{jura_vargs}
@@ -323,7 +323,7 @@ Como as funções distância são negativas no interior do domínio e positivas 
     \label{classifier}
 \end{equation}
 
-A \autoref{quartenary_model} mostra o modelo geológico para a categoria Quaternary do \textit{Swiss Jura}. Uma animação que mostra as coordenadas das distâncias assinaladas estimadas nos eixos x e y e o valor da distância assinalada no eixo z pode ser vista \href{https://github.com/robertorolo/assessing_geological_model_uncertainty_with_probability_fields/blob/main/anim_onecat.gif}{aqui}. O plano corta as distâncias assinaladas na isolinha zero. 
+A \autoref{quartenary_model} mostra o modelo geológico para a categoria Quaternary do \textit{Swiss Jura}. 
 
 \begin{figure}[H]
 	\centering
@@ -331,17 +331,26 @@ A \autoref{quartenary_model} mostra o modelo geológico para a categoria Quatern
 	\includegraphics[width=0.6\textwidth]{capitulo_2/imagens/geomodel_quaternary.png}
 \end{figure}
 
+A \autoref{one_alt} mostra as coordenadas das distâncias assinaladas estimadas nos eixos x e y e o valor da distância assinalada no eixo z. O plano em cinza corta as distâncias assinaladas na isolinha zero. 
+
+\begin{figure}[H]
+	\centering
+	\caption{\label{one_alt}Uma outra forma de visualizar a modelagem geológica implícita.}
+	\subfloat[][Vista 1.]{\includegraphics[width=.3\textwidth]{capitulo_2/imagens/one1.png}\label{<figure1>}}
+	\hspace{1em}
+	\subfloat[][Vista 2.]{\includegraphics[width=.3\textwidth]{capitulo_2/imagens/one2.png}\label{<figure2>}}
+	\hspace{1em}
+	\subfloat[][Vista 3.]{\includegraphics[width=.3\textwidth]{capitulo_2/imagens/one3.png}\label{<figure3>}}
+\end{figure}
+
 Em três dimensões um algoritmo de extração de isosuperfícies pode ser aplicado ao modelo implícito para extrair a isosuperfície zero que pode ser posteriormente visualizada como mostrado na \autoref{implicit_3d_ex}. Esse método cria superfícies suaves já que não são delimitadas pelos blocos do \textit{grid} como na \autoref{quartenary_model}. 
 
 \begin{figure}[H]
     \caption{Exemplo mostrando a extração da isosuperfície zero e visualização em três dimensões.} \label{implicit_3d_ex}
      \centering
-     \subfloat[][Amostras categóricas do banco dados tridimensional.]{\includegraphics[width=.40\textwidth]{capitulo_2/imagens/dados.jpeg}\label{fig:c1}}
-     \hspace{1em}
-     \subfloat[][Amostras das distâncias assinaladas calculadas para a categoria sendo modelada]{\includegraphics[width=.40\textwidth]{capitulo_2/imagens/df1.jpeg}\label{fig:c1}} \\
      \subfloat[][Modelo implícito interpolado por RBF para a categoria sendo modelada.]{\includegraphics[width=.4\textwidth]{capitulo_2/imagens/rbf.jpeg}\label{fig:c2}}
      \hspace{1em}
-     \subfloat[][Isosuperfície zero extraída a partir do modelo implícito.]{\includegraphics[width=.4\textwidth]{capitulo_2/imagens/isorbf.jpeg}\label{fig:c3}}
+     \subfloat[][Isosuperfície zero extraída a partir do modelo implícito.]{\includegraphics[width=.45\textwidth]{capitulo_2/imagens/isorbf.jpeg}\label{fig:c3}}
 \end{figure}
 
 Na presença de múltiplos domínios, as isosuperfícies ou isolinhas, devem ser extraídas uma a uma, e algum tipo de regra hierárquica baseada na idade de cada litologia deve ser aplicada para a criação dos modelos multi-categóricos.
@@ -384,12 +393,24 @@ Por fim, cada bloco é  classificado pela \autoref{eq_mult_rt}
 
 As distâncias estimadas fornecem uma medida de proximidade ao domínio oposto mais próximo. Sendo assim, a mínima distância assinalada estimada é tida como o domínio mais provável de ser encontrado numa região não amostrada. A \autoref{eq_mult_rt} sumariza essa ideia \cite{silvaenhancedgeomodeling}. A categoria associada com a menor distância estimada é retida em cada bloco.
 
-A \autoref{multicat_jura} mostra, da esquerda para a direita, as amostras do \textit{Swiss Jura} transformadas em indicadores para cada uma das cinco categorias do depósito, as distâncias assinaladas calculadas para cada uma das propriedades de indicadores, as distâncias estimadas para um grid 3x3 metros por krigagem dual usando equivalentes Gaussianos dos variogramas da \autoref{jura_vargs} e finalmente, o modelo geológico multi-categórico criado a partir da retenção da categoria responsável pela menor distância assinalada estimada em cada local não amostrado. Uma animação que mostra as coordenadas das distâncias assinaladas estimadas nos eixos x e y e o valor da distância assinalada no eixo z para cada uma das cinco categorias pode ser vista  \href{https://github.com/robertorolo/assessing_geological_model_uncertainty_with_probability_fields/blob/main/anim_multicat.gif}{aqui}.
+A \autoref{multicat_jura} mostra, da esquerda para a direita, as amostras do \textit{Swiss Jura} transformadas em indicadores para cada uma das cinco categorias do depósito, as distâncias assinaladas calculadas para cada uma das propriedades de indicadores, as distâncias estimadas para um grid 3x3 metros por krigagem dual usando equivalentes Gaussianos dos variogramas da \autoref{jura_vargs} e finalmente, o modelo geológico multi-categórico criado a partir da retenção da categoria responsável pela menor distância assinalada estimada em cada local não amostrado. 
 
 \begin{figure}[H]
 	\centering
 	\caption{\label{multicat_jura}Figura esquemática mostrando os passos para a criação do modelo geológico multi-categórico no \textit{Swiss Jura}.}
 	\includegraphics[width=\textwidth]{capitulo_2/imagens/multi category implicit modeling.png}
+\end{figure}
+
+A \autoref{multi_alt} mostra as coordenadas das distâncias assinaladas estimadas nos eixos x e y e o valor da distância assinalada no eixo z para cada uma das cinco categorias. Os blocos são classificados com a categoria responsável pela distância estimada "mais negativa".
+
+\begin{figure}[H]
+	\centering
+	\caption{\label{multi_alt}Uma outra forma de visualizar a modelagem geológica para múltiplas categorias.}
+	\subfloat[][Vista 1.]{\includegraphics[width=.3\textwidth]{capitulo_2/imagens/multi1.png}\label{<figure1>}}
+	\hspace{1em}
+	\subfloat[][Vista 2.]{\includegraphics[width=.3\textwidth]{capitulo_2/imagens/multi2.png}\label{<figure2>}}
+	\hspace{1em}
+	\subfloat[][Vista 3.]{\includegraphics[width=.3\textwidth]{capitulo_2/imagens/multi3.png}\label{<figure3>}}
 \end{figure}
 
 \subsubsection{Acelerando o processo}
@@ -400,7 +421,7 @@ Embora o uso de métodos globais permita a criação de modelos realistas e livr
 
 A decomposição do domínio (\textit{Partition of unity - POU}) \cite{wendland2004scattered}, transforma um problema volumoso e que demanda muito esforço computacional em diversos problemas menores e eficientes que são, ao final, unidos.
 
-A demonstração das equações pode ser encontrada em \citeonline{wendland2004scattered} e \citeonline{martin_boisvert_review_rbf}. Um domínio $A$ é subdividido em uma série de partições sobrepostas $\beta$, como mostradno na \autoref{pou} à direita, de modo que a união de todas as $k$ partições em $A$, $\{ \beta \}^K_{j=1}$ compreende o domínio. Para cada partição, os dados correspondentes são utilizados para interpolar a função escalar $s_j(x)$.
+A demonstração das equações pode ser encontrada em \citeonline{wendland2004scattered} e \citeonline{martin_boisvert_review_rbf}. Um domínio $A$ é subdividido em uma série de partições sobrepostas $\beta$, como mostrado na \autoref{pou} à direita, de modo que a união de todas as $k$ partições em $A$, $\{ \beta \}^K_{j=1}$ compreende o domínio. Para cada partição, os dados correspondentes são utilizados para interpolar a função escalar $s_j(x)$.
 
 A função peso para cada partição deve ser igual a um no centro e 0 na fronteira, a contribuição de cada partição nos locais de sobreposição é dado pela função peso.
 
@@ -460,7 +481,7 @@ A krigagem com anisotropia variável exige que os parâmetros locais de anisotro
 	\legend{Fonte: \citeonline{martin2017implicitmodeling}}
 \end{figure}
 
-Existem diversos métodos para definição da anisotropia local \cite{lillah2015inference}: pode ser inferida por um geomodelador, estimada diretamente a partir dos dados usando técnicas automáticas, interpolada de uma série de pontos onde a orientação foi medida ou pode ser extraída de dados em um grid que representam a variabilidade local (teores krigados, por exemplo). A bilioteca \textit{GSLib} tem diversos softwares para definição de anisotropia local. 
+Existem diversos métodos para definição da anisotropia local \cite{lillah2015inference}: pode ser inferida por um geomodelador, estimada diretamente a partir dos dados usando técnicas automáticas, interpolada de uma série de pontos onde a orientação foi medida ou pode ser extraída de dados em um grid que representam a variabilidade local (teores krigados, por exemplo). A biblioteca \textit{GSLib} tem diversos softwares para definição de anisotropia local. 
 
 \subsubsubsection{Funções de bases radiais com anisotropia local variável}
 
