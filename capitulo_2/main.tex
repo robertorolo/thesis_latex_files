@@ -4,11 +4,11 @@ Esse capítulo é uma revisão da literatura em modelagem geológica automática
 
 \section{Modelagem geológica determinística}
 
-A dispendiosidade na construção e a inflexibilidade dos modelos explícitos impulsionaram o desenvolvimento de técnicas de modelagem geológica automáticas. As técnicas determinísticas geram apenas um único modelo, consequentemente, não possibilitando a avaliação da incerteza associada ao modelo geológico. 
+A dispendiosidade na construção e a inflexibilidade dos modelos explícitos impulsionaram o desenvolvimento de técnicas de modelagem geológica automáticas. As técnicas determinísticas geram apenas um único modelo, consequentemente, não possibilitando a avaliação da incerteza associada ao modelo geológico.
 
 \subsection{Vizinho mais próximo}
 
-Métodos geométricos menos sofisticados, como o vizinho mais próximo podem ser utilizados na criação automática de modelos geológicos determinísticos. Esse algoritmo constrói ao redor de cada amostra sua área de influência, ou volume de influência em três dimensões. A toda a área de influência é atribuída a categoria, ou litologia, correspondente àquela amostra. 
+Métodos geométricos menos sofisticados, como o vizinho mais próximo podem ser utilizados na criação automática de modelos geológicos determinísticos. Esse algoritmo constrói ao redor de cada amostra sua área de influência, ou volume de influência em três dimensões. A toda a área de influência é atribuída a categoria, ou litologia, correspondente àquela amostra.
 
 \subsection{Aprendizado de máquina}
 
@@ -50,10 +50,10 @@ O algoritmo apresentado pode ser usado para estimar cada probabilidade condicion
 Em cada local estimado u a probabilidade deve estar entre  [0,1] e seu somatório deve ser 1. Em alguns casos os pesos de krigagem podem acarretar estimativas que não obedecem esses requisitos. Nesses casos deve ser feita a correção de relação de ordem. A categoria escolhida para cada nó, é aquela com maior probabilidade de ocorrência.
 
 \subsection{Métodos implícitos}
- 
+
 A família de métodos ditos métodos implícitos compreendem técnicas importadas da computação gráfica. O uso da modelagem implícita foi introduzida no campo da computação gráfica para a geração de objetos de diferentes geometrias e complexidades por  \citeonline{bloomenthal1997introduction}. A ideia geral é usar uma função implícita para demarcar regiões de diferentes formas e extensões no espaço. \citeonline{cowan2002rapid} e \citeonline{cowan2003practical} popularizaram a modelagem implícita no contexto geológico, baseados no trabalho de \citeonline{savchenko}, que modela objetos tridimensionais a partir de dados esparsos interpolando uma função volume.
 
-Modelos geológicos implícitos são criados a partir de dados esparsos, geralmente, dados categóricos (\autoref{imp_mod} (a)). Os pontos amostrais podem ser usados para derivar uma função implícita que fornece uma representação matemática contínua de um atributo através de um volume, um campo escalar ou modelo implícito (\autoref{imp_mod} (b)). Modelos implícitos contém um número infinito de isosuperfícies. Para visualizar o modelo geológico uma isosuperfície específica deve ser extraída do modelo e mostrada no espaço tridimensional (geralmente a isosuperfície zero), $f(x,y,z)=s$, onde $s$ é o valor de interesse no campo escalar (\autoref{imp_mod} (c)). A localização dessa superfície é conhecida implicitamente como função da localização no domínio \cite{martin2017implicitmodeling}. 
+Modelos geológicos implícitos são criados a partir de dados esparsos, geralmente, dados categóricos (\autoref{imp_mod} (a)). Os pontos amostrais podem ser usados para derivar uma função implícita que fornece uma representação matemática contínua de um atributo através de um volume, um campo escalar ou modelo implícito (\autoref{imp_mod} (b)). Modelos implícitos contém um número infinito de isosuperfícies. Para visualizar o modelo geológico uma isosuperfície específica deve ser extraída do modelo e mostrada no espaço tridimensional (geralmente a isosuperfície zero), $f(x,y,z)=s$, onde $s$ é o valor de interesse no campo escalar (\autoref{imp_mod} (c)). A localização dessa superfície é conhecida implicitamente como função da localização no domínio \cite{martin2017implicitmodeling}.
 
 \begin{figure}[H]
     \centering
@@ -100,7 +100,7 @@ Como exemplo será utilizada a categoria Quaternary do \textit{Swiss Jura}. A \a
 	\includegraphics[width=0.6\textwidth]{capitulo_2/imagens/ind5.png}
 \end{figure}
 
-O segundo passo é o cálculo das distâncias assinaladas. Para cada ponto amostral, a menor distância euclideana até um outro ponto amostral que pertença a um indicador oposto é computada, e esse valor atribuído àquele ponto, com o sinal negativo caso pertença ao domínio modelado e com o sinal positivo, caso contrário, como ilustrado na \autoref{2d_ex}. 
+O segundo passo é o cálculo das distâncias assinaladas. Para cada ponto amostral, a menor distância euclideana até um outro ponto amostral que pertença a um indicador oposto é computada, e esse valor atribuído àquele ponto, com o sinal negativo caso pertença ao domínio modelado e com o sinal positivo, caso contrário, como ilustrado na \autoref{2d_ex}.
 
 \begin{figure}[H]
     \centering
@@ -251,23 +251,23 @@ Os pesos podem ser calculados resolvendo as equações de krigagem. Neste caso, 
 
 \begin{equation}
     \label{global_k}
-    \begin{bmatrix} 
+    \begin{bmatrix}
     C_{11}&\dots&C_{1n}&1\\
     \vdots&\ddots&\vdots&1\\
-    C_{n1}&\dots&C_{nn}&1\\ 
+    C_{n1}&\dots&C_{nn}&1\\
     1&1&1&0
     \end{bmatrix}
-    \begin{bmatrix} 
+    \begin{bmatrix}
     \lambda_{1}\\
     \vdots\\
-    \lambda_{n}\\ 
+    \lambda_{n}\\
     \mu
     \end{bmatrix}
     =
-    \begin{bmatrix} 
+    \begin{bmatrix}
     C_{10}\\
     \vdots\\
-    C_{n0}\\ 
+    C_{n0}\\
     1
     \end{bmatrix}
 \end{equation}
@@ -291,23 +291,23 @@ Os pesos são calculados resolvendo a \autoref{dual_k}:
 
 \begin{equation}
     \label{dual_k}
-    \begin{bmatrix} 
+    \begin{bmatrix}
     C_{11}&\dots&C_{1n}&1\\
     \vdots&\ddots&\vdots&1\\
-    C_{n1}&\dots&C_{nn}&1\\ 
+    C_{n1}&\dots&C_{nn}&1\\
     1&1&1&0
     \end{bmatrix}
-    \begin{bmatrix} 
+    \begin{bmatrix}
     \omega_{1}\\
     \vdots\\
-    \omega_{n}\\ 
+    \omega_{n}\\
     m^*_{OK}
     \end{bmatrix}
     =
-    \begin{bmatrix} 
+    \begin{bmatrix}
     d_{1}\\
     \vdots\\
-    d_{n}\\ 
+    d_{n}\\
     0
     \end{bmatrix}
 \end{equation}
@@ -329,21 +329,21 @@ Onde $\theta$ é o \textit{kernel}, que pode ser parametrizado a partir do vario
 
 \begin{equation}
     \label{rbf_sist}
-    \begin{bmatrix} 
+    \begin{bmatrix}
     \theta_{11}&\dots&\theta_{1n}\\
     \vdots&\ddots&\vdots\\
-    \theta_{n1}&\dots&\theta_{nn}\\ 
+    \theta_{n1}&\dots&\theta_{nn}\\
     \end{bmatrix}
-    \begin{bmatrix} 
+    \begin{bmatrix}
     \lambda_{1}\\
     \vdots\\
-    \lambda_{n}\\ 
+    \lambda_{n}\\
     \end{bmatrix}
     =
-    \begin{bmatrix} 
+    \begin{bmatrix}
     d_{1}\\
     \vdots\\
-    d_{n}\\ 
+    d_{n}\\
     \end{bmatrix}
 \end{equation}
 
@@ -362,7 +362,7 @@ Como as funções distância são negativas no interior do domínio e positivas 
     \label{classifier}
 \end{equation}
 
-A \autoref{quartenary_model} mostra o modelo geológico para a categoria Quaternary do \textit{Swiss Jura}. 
+A \autoref{quartenary_model} mostra o modelo geológico para a categoria Quaternary do \textit{Swiss Jura}.
 
 \begin{figure}[H]
 	\centering
@@ -370,7 +370,7 @@ A \autoref{quartenary_model} mostra o modelo geológico para a categoria Quatern
 	\includegraphics[width=0.6\textwidth]{capitulo_2/imagens/geomodel_quaternary.png}
 \end{figure}
 
-A \autoref{one_alt} mostra as coordenadas das distâncias assinaladas estimadas nos eixos x e y e o valor da distância assinalada no eixo z. O plano em cinza corta as distâncias assinaladas na isolinha zero. 
+A \autoref{one_alt} mostra as coordenadas das distâncias assinaladas estimadas nos eixos x e y e o valor da distância assinalada no eixo z. O plano em cinza corta as distâncias assinaladas na isolinha zero.
 
 \begin{figure}[H]
 	\centering
@@ -382,7 +382,7 @@ A \autoref{one_alt} mostra as coordenadas das distâncias assinaladas estimadas 
 	\subfloat[][Vista 3.]{\includegraphics[width=.3\textwidth]{capitulo_2/imagens/one3.png}\label{<figure3>}}
 \end{figure}
 
-Em três dimensões um algoritmo de extração de isosuperfícies pode ser aplicado ao modelo implícito para extrair a isosuperfície zero que pode ser posteriormente visualizada como mostrado na \autoref{implicit_3d_ex}. Esse método cria superfícies suaves já que não são delimitadas pelos blocos do \textit{grid} como na \autoref{quartenary_model}. 
+Em três dimensões um algoritmo de extração de isosuperfícies pode ser aplicado ao modelo implícito para extrair a isosuperfície zero que pode ser posteriormente visualizada como mostrado na \autoref{implicit_3d_ex}. Esse método cria superfícies suaves já que não são delimitadas pelos blocos do \textit{grid} como na \autoref{quartenary_model}.
 
 \begin{figure}[H]
     \caption{Exemplo mostrando a extração da isosuperfície zero e visualização em três dimensões.} \label{implicit_3d_ex}
@@ -432,7 +432,7 @@ Por fim, cada bloco é  classificado pela \autoref{eq_mult_rt}
 
 As distâncias estimadas fornecem uma medida de proximidade ao domínio oposto mais próximo. Sendo assim, a mínima distância assinalada estimada é tida como o domínio mais provável de ser encontrado numa região não amostrada. A \autoref{eq_mult_rt} sumariza essa ideia \cite{silvaenhancedgeomodeling}. A categoria associada com a menor distância estimada é retida em cada bloco.
 
-A \autoref{multicat_jura} mostra, da esquerda para a direita, as amostras do \textit{Swiss Jura} transformadas em indicadores para cada uma das cinco categorias do depósito, as distâncias assinaladas calculadas para cada uma das propriedades de indicadores, as distâncias estimadas para um grid 3x3 metros por krigagem dual usando equivalentes Gaussianos dos variogramas da \autoref{jura_vargs} e finalmente, o modelo geológico multi-categórico criado a partir da retenção da categoria responsável pela menor distância assinalada estimada em cada local não amostrado. 
+A \autoref{multicat_jura} mostra, da esquerda para a direita, as amostras do \textit{Swiss Jura} transformadas em indicadores para cada uma das cinco categorias do depósito, as distâncias assinaladas calculadas para cada uma das propriedades de indicadores, as distâncias estimadas para um grid 3x3 metros por krigagem dual usando equivalentes Gaussianos dos variogramas da \autoref{jura_vargs} e finalmente, o modelo geológico multi-categórico criado a partir da retenção da categoria responsável pela menor distância assinalada estimada em cada local não amostrado.
 
 \begin{figure}[H]
 	\centering
@@ -481,9 +481,9 @@ O método deve ser utilizado para um único domínio por vez. Na presença de m�
 
 \subsubsubsection{Refinamento dos contatos} \label{bound_ref}
 
-\citeonline{silva2015speeding} propuseram uma técnica baseada no algoritmo dos cubos marchantes \cite{lorensen1987marching} para acelerar o processo de modelagem em modelos multi-categóricos. O primeiro passo é criar o modelo geológico usando distâncias assinaladas em um \textit{grid} grosseiro, como mostra o mapa a esquerda na \autoref{refi_cont}. 
+\citeonline{silva2015speeding} propuseram uma técnica baseada no algoritmo dos cubos marchantes \cite{lorensen1987marching} para acelerar o processo de modelagem em modelos multi-categóricos. O primeiro passo é criar o modelo geológico usando distâncias assinaladas em um \textit{grid} grosseiro, como mostra o mapa a esquerda na \autoref{refi_cont}.
 
-Depois disso, o algoritmo dos cubos marchantes é aplicado ao modelo geológico com o objetivo de identificar a região ao redor dos contatos. Neste algoritmo, um cubo composto por 8 células em três dimensões ou 4 células em duas dimensões percorre o \textit{grid}, conforme mostrado na \autoref{marcub}, da esquerda para a direita e de cima para baixo visitando todo o \textit{grid}. O algoritmo verifica se pelo menos um dos nós que constituem o cubo pertence a uma categoria diferente dos demais. Nesse caso, esses blocos são marcados como região de contato. 
+Depois disso, o algoritmo dos cubos marchantes é aplicado ao modelo geológico com o objetivo de identificar a região ao redor dos contatos. Neste algoritmo, um cubo composto por 8 células em três dimensões ou 4 células em duas dimensões percorre o \textit{grid}, conforme mostrado na \autoref{marcub}, da esquerda para a direita e de cima para baixo visitando todo o \textit{grid}. O algoritmo verifica se pelo menos um dos nós que constituem o cubo pertence a uma categoria diferente dos demais. Nesse caso, esses blocos são marcados como região de contato.
 
 \begin{figure}[H]
 \caption{\label{marcub} Esquema mostrando o funcionamento do algoritmo cubos marchantes.}
@@ -507,7 +507,7 @@ A \autoref{refi_cont} mostra, seguindo a direção das flechas, o modelo inicial
 
 Corpos geológicos são complexos da escala macro à escala micro. Essa característica pode tornar difícil a captura de suas feições com funções de covariância. Segundo \citeonline{martin2017implicitmodeling}, a não estacionariedade de segunda ordem deve ser incorporada quando estruturas complexas estão sendo modeladas.
 
-Anisotropia é definida como o conjunto de rotações e relações anisotrópicas: azimute, mergulho, \textit{rake}, $r1 = \frac{a_{hmin}}{a_{hmax}}$, $r2 = \frac{a_{vert}}{a_{hmax}}$. 
+Anisotropia é definida como o conjunto de rotações e relações anisotrópicas: azimute, mergulho, \textit{rake}, $r1 = \frac{a_{hmin}}{a_{hmax}}$, $r2 = \frac{a_{vert}}{a_{hmax}}$.
 
 \subsubsubsection{Krigagem com anisotropia local variável}
 
@@ -520,7 +520,7 @@ A krigagem com anisotropia variável exige que os parâmetros locais de anisotro
 	\legend{Fonte: \citeonline{martin2017implicitmodeling}}
 \end{figure}
 
-Existem diversos métodos para definição da anisotropia local \cite{lillah2015inference}: pode ser inferida por um geomodelador, estimada diretamente a partir dos dados usando técnicas automáticas, interpolada de uma série de pontos onde a orientação foi medida ou pode ser extraída de dados em um grid que representam a variabilidade local (teores krigados, por exemplo). A biblioteca \textit{GSLib} tem diversos softwares para definição de anisotropia local. 
+Existem diversos métodos para definição da anisotropia local \cite{lillah2015inference}: pode ser inferida por um geomodelador, estimada diretamente a partir dos dados usando técnicas automáticas, interpolada de uma série de pontos onde a orientação foi medida ou pode ser extraída de dados em um grid que representam a variabilidade local (teores krigados, por exemplo). A biblioteca \textit{GSLib} tem diversos softwares para definição de anisotropia local.
 
 \subsubsubsection{Funções de bases radiais com anisotropia local variável}
 
@@ -535,7 +535,7 @@ Ao contrário da krigagem com anisotropia local variável, que requer os vetores
 	\legend{Fonte: \citeonline{martin2017implicitmodeling}}
 \end{figure}
 
-Extrair orientações locais de um modelo criado com anisotropia global e utilizar essas orientações em uma nova interpolação não estacionária resulta em um modelo geológico mais refinado considerando informação local. Esse processo pode ser repetido continuamente refinando o campo de anisotropias locais. 
+Extrair orientações locais de um modelo criado com anisotropia global e utilizar essas orientações em uma nova interpolação não estacionária resulta em um modelo geológico mais refinado considerando informação local. Esse processo pode ser repetido continuamente refinando o campo de anisotropias locais.
 
 O refinamento iterativo \cite{martin2017iterative} com funções de bases radiais tem um benefício extra (em relação à krigagem com variação local de anisotropia), a possibilidade de incluir algum tipo de critério de parada, quando o modelo for considerado refinado. Como as partições são independentes, se o refinamento de uma partição em particular não resultar em mudanças significativas, poderá ser omitido na solução final. Essa característica torna o processo significativamente mais rápido \cite{martin2017implicitmodeling}.
 
@@ -550,15 +550,15 @@ A \autoref{iterref} mostra um processo de refinamento iterativo onde a semente �
 
 \subsubsection{Desvantagens}\label{problemas}
 
-\citeonline{mancel2019problem} apontam que na presença de dados esparsos e amostras com espaçamento variável, a incerteza em relação à posição dos contatos de um domínio geológico é significativa. Conforme amostras são coletadas e inseridas no modelo, a incerteza em relação à localização diminui e o risco é reduzido. A assimetria espacial na amostragem e a dispersão das amostras são características inerentes às amostragens para avaliação de recursos e podem levar a situações únicas em que as distâncias assinaladas se mostram incapazes de gerar modelos apropriados. 
+\citeonline{mancel2019problem} apontam que na presença de dados esparsos e amostras com espaçamento variável, a incerteza em relação à posição dos contatos de um domínio geológico é significativa. Conforme amostras são coletadas e inseridas no modelo, a incerteza em relação à localização diminui e o risco é reduzido. A assimetria espacial na amostragem e a dispersão das amostras são características inerentes às amostragens para avaliação de recursos e podem levar a situações únicas em que as distâncias assinaladas se mostram incapazes de gerar modelos apropriados.
 
-O problema reside no fato do algoritmo para o cálculo da função distância assinalada buscar a amostra mais próxima codificada com um indicador oposto sem levar em consideração a estrutura e o espaçamento dos dados circundantes. Um cenário unidimensional simples ilustra esse viés devido à assimetria na \autoref{desvant1}. 
+O problema reside no fato do algoritmo para o cálculo da função distância assinalada buscar a amostra mais próxima codificada com um indicador oposto sem levar em consideração a estrutura e o espaçamento dos dados circundantes. Um cenário unidimensional simples ilustra esse viés devido à assimetria na \autoref{desvant1}.
 
-A Figura \autoref{desvant11} mostra a situação ideal, onde a amostra amarela da esquerda aponta para a primeira amostra vermelha, da esquerda para a direita. A primeira amostra vermelha aponta para a amostra amarela da esquerda, assim como a segunda amostra vermelha. Já a terceira amostra vermelha aponta para a amostra amarela da direita, dessa forma, o melhor palpite para o limite (ou a isosuperfície zero) da direita entre os domínios amarelo e vermelho se localiza no ponto médio entre as amostras. 
+A Figura \autoref{desvant11} mostra a situação ideal, onde a amostra amarela da esquerda aponta para a primeira amostra vermelha, da esquerda para a direita. A primeira amostra vermelha aponta para a amostra amarela da esquerda, assim como a segunda amostra vermelha. Já a terceira amostra vermelha aponta para a amostra amarela da direita, dessa forma, o melhor palpite para o limite (ou a isosuperfície zero) da direita entre os domínios amarelo e vermelho se localiza no ponto médio entre as amostras.
 
 A Figura \autoref{desvant2} mostra a situação que acontece de fato, todas as amostras vermelhas apontam para a amostra amarela da esquerda puxando o limite da direita entre os domínios para perto das amostras vermelhas, diminuindo o tamanho do domínio, ou seja, há um viés conservador no volume dos domínios na presença de forte assimetria nas amostras.
 
-\begin{figure}[H] 
+\begin{figure}[H]
     \centering
     \caption{Cenário unidimensional simples ilustrando o viés devido à assimetria nos modelos geológicos.} \label{desvant1}
      \subfloat[][Situação ideal, sem viés.]{\includegraphics[width=.45\textwidth]{capitulo_2/imagens/sd_prob3.png}\label{desvant11}}
@@ -572,7 +572,7 @@ Os autores propõe uma solução usando indicadores, nesse caso, a isosuperfíci
 \begin{enumerate}[label=\roman*]
     \item Usar a triangulação de Voronoi para definir a área de influência de cada amostra de indicador;
     \item Calcular a proporção da área total que é ocupada por polígonos que representem amostras do domínio a ser modelado;
-    \item Usar a proporção da área (1-p) para definir, a partir da distribuição acumulada da interpolação dos indicadores, o limiar no qual a isosuperfície que represente o contato será extraída. Como mostrado no exemplo da \autoref{nnmet} 
+    \item Usar a proporção da área (1-p) para definir, a partir da distribuição acumulada da interpolação dos indicadores, o limiar no qual a isosuperfície que represente o contato será extraída. Como mostrado no exemplo da \autoref{nnmet}
 \end{enumerate}.
 
 \begin{figure}[H]
@@ -584,7 +584,7 @@ Os autores propõe uma solução usando indicadores, nesse caso, a isosuperfíci
 
 \section{Modelagem geológica estocástica}
 
-A necessidade de avaliação da incerteza associada ao modelo geológico impulsionou o desenvolvimento de métodos estocásticos baseados em múltiplas realizações equiprováveis de um atributo. Esses métodos podem ser divididos em dois grupos: métodos baseados em objetos e métodos baseados em células. 
+A necessidade de avaliação da incerteza associada ao modelo geológico impulsionou o desenvolvimento de métodos estocásticos baseados em múltiplas realizações equiprováveis de um atributo. Esses métodos podem ser divididos em dois grupos: métodos baseados em objetos e métodos baseados em células.
 
 \subsection{Métodos baseados em objetos}
 
@@ -592,7 +592,7 @@ Os métodos baseados em objetos \cite{pyrcz2014geostatistical} têm como objetiv
 
 \subsection{Métodos baseados em células}
 
-Os métodos baseados em células, em contrapartida, são condicionados pelas amostras e são utilizados amplamente pela indústria da mineração. 
+Os métodos baseados em células, em contrapartida, são condicionados pelas amostras e são utilizados amplamente pela indústria da mineração.
 
 \subsubsection{Simulação sequencial dos indicadores}
 
@@ -618,15 +618,15 @@ dentro da área em estudo A. O obejtivo das simulações é gerar diversas reali
 \end{equation}
 
 Condicionadas ao dados $\{z(u_{\alpha}), \alpha=1,...,n\}$.
- 
+
 Considerando a simulação conjunta de valores em z em apenas dois lugares $u'_{1}$ e  $u'_{2}$. Um conjunto de pares de realizações $\{z^{(l)}(u'_{1}), z^{(l)(u'_{2})}\},l=1,...,L$ pode ser gerado tomando valores do ccdf bivariado. De acordo com a \autoref{sisim_2}:
- 	
+
 \begin{equation}
 	F(u'_{1}, u'_{2}, z_{1}, z_{2}|(n)) = Prob\{Z(u'_{1})\leq z_{1}, Z(u'_{2})\leq z_{2}|(n)\}
 	\label{sisim_2}
 \end{equation}
- 	
-O axioma de Bayes diz que quaisquer ccdfs bivariados podem ser expressos como um produto de ccdfs univariados (\autoref{sisim_3}): 
+
+O axioma de Bayes diz que quaisquer ccdfs bivariados podem ser expressos como um produto de ccdfs univariados (\autoref{sisim_3}):
 
 \begin{equation}
 	F(u'_{1}, u'_{1}, z_{1}, z_{2}|(n)) = F(u'_{2}, z_{2}|(n+1))F(u'_{1}, z_{1}|(n))
@@ -634,7 +634,7 @@ O axioma de Bayes diz que quaisquer ccdfs bivariados podem ser expressos como um
 \end{equation}
 
 Onde $(n+1)$ denota a condicionalidade aos n valores $Z(u_{\alpha})$ e também à realização $Z(u'_{1})=z^{(l)}(u'_{1})$. A decomposição permite gerar o par $\{z^{(l)}(u'_{1}), z^{(l)}(u'_{2})\}$ em dois passos:
-  
+
 \begin{enumerate}
  	\item O valor $z^{(l)}(u'_{1})$ é tomado do ccdf $F(u'_{1}, z_{1}|(n))$;
  	\item Então o ccdf no lugar $u'_{2}$ é condicionado à realização $z^{(l)}(u'_{1})$ e também as dados, e ao tomar um valor $z^{(l)}(u'_{2})$ desse ccdf, garante-se a correlação.
@@ -691,7 +691,7 @@ Entretanto, como este método exige que a varredura da imagem de treinamento sej
 
 Há ainda a família dos métodos Gaussianos truncados. Esses métodos são aplicados, geralmente, quando as litologias ocorrem em uma ordem fixa, como em sequências estratigráficas por exemplo. A ideia básica por trás da simulação Gaussiana truncada \cite{matheron1987conditional} é simular uma variável Gaussiana (contínua) em cada célula do \textit{grid} e então aplicar uma regra de truncagem para converter os valores Gaussianos contínuos em valores categóricos.
 
-A regra de truncagem é uma pare importante dos métodos Gaussianos truncados já que controla os contatos entre as diferentes litologias, suas transições e proporções. A definição da regra de truncagem é geralmente baseada nas probabilidades de transição observadas nos dados e em modelos geológicos conceituais \cite{silva2018enhanced}. Entretanto, diversas técnicas foram propostas para a definição das regras de truncagem. 
+A regra de truncagem é uma pare importante dos métodos Gaussianos truncados já que controla os contatos entre as diferentes litologias, suas transições e proporções. A definição da regra de truncagem é geralmente baseada nas probabilidades de transição observadas nos dados e em modelos geológicos conceituais \cite{silva2018enhanced}. Entretanto, diversas técnicas foram propostas para a definição das regras de truncagem.
 
 Em muitos casos, a abordagem Gaussiana truncada se mostra bastante restritiva. Por esse motivo, a técnica pode ser estendida para duas ou mais variáveis Gaussianas. Essa adaptação é chamada de simulação pluri-Gaussiana truncada \cite{armstrong2011plurigaussian}.
 
@@ -716,7 +716,7 @@ O método mais simples de avaliação de incerteza em modelos geológicos implí
     \label{eq_softmax}
 \end{equation}
 
-$P(i(u)=k)$ representa a probabilidade de um local $u$ pertencer à categoria $k$, $d^*_k(u)$ é a distância estimada para a categoria $k$ e $\omega$ é um parâmetro que regula a inter-relação entre as probabilidades das $K$ diferentes categorias. Quanto maior $\omega$, maior as diferenças entre as probabilidades (maior a banda de incerteza). \citeonline{silvaanddeutschccgcorrecting} advogam que o parâmetro pode ser o maior módulo entre as distâncias estimadas em um nó. 
+$P(i(u)=k)$ representa a probabilidade de um local $u$ pertencer à categoria $k$, $d^*_k(u)$ é a distância estimada para a categoria $k$ e $\omega$ é um parâmetro que regula a inter-relação entre as probabilidades das $K$ diferentes categorias. Quanto maior $\omega$, maior as diferenças entre as probabilidades (maior a banda de incerteza). \citeonline{silvaanddeutschccgcorrecting} advogam que o parâmetro pode ser o maior módulo entre as distâncias estimadas em um nó.
 
 A \autoref{softmax_grafico} mostra, à esquerda, as distâncias estimadas em uma determinada célula do \textit{grid} criado para a modelagem do \textit{Swiss Jura} e a direita as distâncias transformadas em probabilidades usando a \autoref{eq_softmax}. O parâmetro $\omega$ é o maior módulo entre as distâncias estimadas naquele bloco.
 
@@ -741,21 +741,21 @@ A \autoref{omega_ent} mostra a relação entre $\omega$ e a entropia de Shannon 
 
 A \autoref{jura_prob} mostra, à esquerda, as probabilidades para a categoria Quaternary obtidas transformando as distâncias assinaladas com o valor de $\omega$ igual a 10. Para esse valor do parâmetro há muitas regiões com probabilidade zero ou um de ocorrência e algumas regiões de transição próximas aos contatos. Ao centro, as probabilidades calculadas a partir das distâncias para $\omega$ igual a 100, nesse caso, há uma menor diferença entre as probabilidades. Por fim, à direita, as probabilidades foram calculadas usando como parâmetro $\omega$ o maior módulo entre as distâncias estimadas.
 
-\begin{figure}[H] 
+\begin{figure}[H]
     \centering
     \caption{Distâncias transformadas em probabilidades para a categoria Quaternary usando valores diferentes para $\omega$.} \label{jura_prob}
-     \subfloat[][$\omega = 10$.]{\includegraphics[width=.3\textwidth]{capitulo_2/imagens/probs_10.0.png}\label{<figure1>}}
+     \subfloat[][$\omega = 10$.]{\includegraphics[width=.3\textwidth]{capitulo_2/imagens/probs_100.png}\label{<figure1>}}
      \hspace{1em}
-     \subfloat[][$\omega = 100$]{\includegraphics[width=.3\textwidth]{capitulo_2/imagens/probs_100.0.png}\label{<figure2>}}
+     \subfloat[][$\omega = 100$]{\includegraphics[width=.3\textwidth]{capitulo_2/imagens/probs_1000.png}\label{<figure2>}}
      \hspace{1em}
-     \subfloat[][$\omega = $ maior módulo entre as distâncias estimadas.]{\includegraphics[width=.3\textwidth]{capitulo_2/imagens/probs_0.0.png}\label{<figure3>}}
+     \subfloat[][$\omega = $ maior módulo entre as distâncias estimadas.]{\includegraphics[width=.3\textwidth]{capitulo_2/imagens/probs_00.png}\label{<figure3>}}
 \end{figure}
 
 Apesar do método ser simples e direto, suportar múltiplas categorias simultaneamente, seu resultado não pode ser utilizado em etapas subsequentes do processo de  avaliação de recursos, por não gerar múltiplas realizações do modelo geológico.
 
 \subsubsubsection{\textit{Boundsim}}
 
-Uma outra metodologia proposta por \citeonline{mclennanstationarity, mclennan2006boundsim} consiste em realizar um \textit{bootstrap} espacial \cite{deutsh_spatial_bootstrap} da média da distância assinalada calculada para uma dada categoria. O procedimento de \textit{bootstrap} é amplamente utilizado para quantificar incerteza em parâmetros estatísticos. As duas mais importantes suposições são: os dados são representativos e os dados são independentes. Por esse motivo, a técnica de amostragem deve ser modificada para variáveis que apresentam continuidade espacial. 
+Uma outra metodologia proposta por \citeonline{mclennanstationarity, mclennan2006boundsim} consiste em realizar um \textit{bootstrap} espacial \cite{deutsh_spatial_bootstrap} da média da distância assinalada calculada para uma dada categoria. O procedimento de \textit{bootstrap} é amplamente utilizado para quantificar incerteza em parâmetros estatísticos. As duas mais importantes suposições são: os dados são representativos e os dados são independentes. Por esse motivo, a técnica de amostragem deve ser modificada para variáveis que apresentam continuidade espacial.
 
 Diferentes valores para a média são tomados do histograma da média da distância assinalada, gerado pelo \textit{bootstrap} espacial. Esses valores podem ser correspondentes ao p10, p50 e p90 por exemplo. Então, as distâncias assinaladas são interpolados para os nós do \textit{grid} por krigagem simples, que tem como hipótese a estacionariedade da média por todo o domínio. A média estacionária para a krigagem simples são os valores tomados do histograma.
 
@@ -763,7 +763,7 @@ O último passo consiste em extrair a isosuperfície zero dos modelos implícito
 
 A metodologia é simples e direta, porém, deve ser aplicada à uma categoria por vez, na presença de múltiplos domínios alguma abordagem hierárquica deve ser estabelecida. A sensibilidade da krigagem simples à média depende da configuração espacial das amostras, muitas vezes a diferença entre os volumes obtidos é irrelevante.
 
-O produto final do método pode ser utilizado nas etapas subsequentes do processo de avaliação, todavia, o método não avalia incerteza de forma adequada. Os autores do estudo original aplicaram a metodologia apenas em bancos de dados sintéticos e de geometria regular. 
+O produto final do método pode ser utilizado nas etapas subsequentes do processo de avaliação, todavia, o método não avalia incerteza de forma adequada. Os autores do estudo original aplicaram a metodologia apenas em bancos de dados sintéticos e de geometria regular.
 
 \subsubsubsection{Condicionamento das amostras}\label{chap:cond_amo}
 
@@ -776,13 +776,13 @@ d^*(u)=\sum_{i=1}^{n} f^{DC}_i(u) \lambda_i(u) d(u_i)
 
 Onde $d^*(u)$ é a distância interpolada no local não amostrado $u$, $d(u_i)$ são as distâncias assinaladas calculadas para as amostras, $\lambda_i(u)$ são os pesos dados pela krigagem ou inverso da distância e $f^{DC}_i(u)$ são os fatores de condicionamento que dependem do valor numérico das amostras. A krigagem ou inverso da distância clássicos apresentam um fator de condicionamento igual a um para todas as amostras.
 
-Limites pessimistas ou otimistas podem ser gerados a partir das parametrizações mostradas na \autoref{param}. A reta de inclinação negativa da Figura \autoref{paramlinear} dá cada vez mais peso para amostras de distância mais negativas, e cada vez menos peso para amostras mais positivas produzindo uma isosuperfície zero otimista. O domínio tem um volume maior em relação ao caso base onde $f^{DC}_i(u)$ é igual a um para todas as amostras independente do seu valor. O contrário acontece para a reta com inclinação positiva. 
+Limites pessimistas ou otimistas podem ser gerados a partir das parametrizações mostradas na \autoref{param}. A reta de inclinação negativa da Figura \autoref{paramlinear} dá cada vez mais peso para amostras de distância mais negativas, e cada vez menos peso para amostras mais positivas produzindo uma isosuperfície zero otimista. O domínio tem um volume maior em relação ao caso base onde $f^{DC}_i(u)$ é igual a um para todas as amostras independente do seu valor. O contrário acontece para a reta com inclinação positiva.
 
 A magnitude da diferença entre os limites otimistas e pessimistas é dada pelo parâmetro fator mínimo, ou \textit{fmin}, escolhido pelo usuário. Um f mínimo igual a um, gera um fator igual a um para todas as amostas (estimativa clássica). Quanto maior o fator, maior a inclinação da reta, e consequentemente, maior a diferença entre os cenários. O valor de f mínimo pode ser diferente para os cenários otimista e pessimista.
 
 A magnitude da diferença pode ser acentuada usando uma função quadrática (Figura \autoref{paramquadrat}) ao invés de uma linear.
 
-\begin{figure}[H] 
+\begin{figure}[H]
     \centering
     \caption{Parametrização das amostras.} \label{param}
      \subfloat[][Linear.]{\includegraphics[width=.8\textwidth]{capitulo_2/imagens/linear_kfp.png}\label{paramlinear}} \\
@@ -814,7 +814,7 @@ O método é baseado em múltiplas realizações do modelo geológico, então, s
 \begin{enumerate}[label=\roman*]
 \item Cálculo das distâncias assinaladas para todas as amostras e categorias;
 \item Variografia das distâncias no espaço original para todas as categorias;
-\item Interpolação das distâncias; 
+\item Interpolação das distâncias;
 \item criação do modelo com base na menor distância interpolada;
 \item Criação da zona de incerteza;
 \item Transformação Gaussiana das distâncias;
@@ -831,7 +831,7 @@ Além disso, a simulação é muito sensível aos parâmetros, o que muitas veze
 
 \citeonline{silvaenhancedgeomodeling} concluiu que imagens de treinamento geradas a partir das amostras produzem modelos geológicos estocásticos, por MPS, melhores.
 
-\subsubsubsection{Modelagem estocástica de estruturas curvilineares} 
+\subsubsubsection{Modelagem estocástica de estruturas curvilineares}
 
 \citeonline{lillah2013stochastic} propuseram a modelagem de estruturas curvilineares e a avaliação de incerteza desses modelos usando funções distância assinaladas. A metodologia tradicional é modificada para considerar não estacionariedade na forma de anisotropia variável localmente (LVA), que é incorporada na krigagem e na simulação sequencial Gaussiana das distâncias assinaladas. O campo de anisotropia variável captura a direção local, na qual a unidade geológica é mais contínua; enquanto, a simulação das distâncias e posterior extração da isosuperfície avalia a incerteza volumétrica.
 
@@ -843,7 +843,7 @@ A incerteza é visualizada a partir de um filme no qual a transição entre as r
 
 \subsubsubsection{Simulação dos contatos}\label{boundsim}
 
-A metodologia proposta por \citeonline{wilde2012kriging} consiste em gerar realizações dos contatos geológicos comparando distâncias modificadas interpoladas com simulações não condicionais. 
+A metodologia proposta por \citeonline{wilde2012kriging} consiste em gerar realizações dos contatos geológicos comparando distâncias modificadas interpoladas com simulações não condicionais.
 
 É necessário definir, antes de qualquer coisa, uma zona de incerteza em torno dos contatos. Blocos localizados fora da zona são considerados como pertencentes a um determinado indicador, enquanto blocos dentro da zona terão sua incerteza avaliada. A zona de incerteza é obtida a partir de um parâmetro C que controla sua espessura.
 
