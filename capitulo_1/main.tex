@@ -15,7 +15,13 @@ Construir modelos numéricos de longo, médio e curto prazo para avaliação de 
 \item Avaliação e gerenciamento da incerteza geológica e de teores.
 \end{enumerate}
 
-Após a coleta, gerenciamento e checagem dos dados, é necessário identificar diferentes domínios. A determinação dos domínios deve ser baseada no conhecimento geológico, i.e. zonas de oxidação, litologias, alteração ou limites estruturais e deve ser suportada por extensiva análise estatística (análise exploratória dos dados), incluindo análises variográficas. É importante que a definição dos domínios faça sentido espacial e geológico. Os domínios são, algumas vezes, baseados na combinação de duas ou mais variáveis para as quais a correlação entre os teores pode ser demonstrada. O procedimento pode ser bastante demorado, principalmente em depósitos multivariados, entretanto, as estimativas são melhoradas significativamente quando cuidadosamente limitadas por variáveis geológicas \cite{rossi2013mineral}.
+Após a coleta, gerenciamento e checagem dos dados, é necessário identificar diferentes domínios. A determinação dos domínios deve ser baseada no conhecimento geológico, i.e. zonas de oxidação, litologias, alteração ou limites estruturais e deve ser suportada por extensiva análise estatística (análise exploratória dos dados), incluindo análises variográficas. É importante que a definição dos domínios faça sentido espacial e geológico. Os domínios são, algumas vezes, baseados na combinação de duas ou mais variáveis para as quais a correlação entre os teores pode ser demonstrada. O procedimento pode ser bastante demorado, principalmente em depósitos multivariados, entretanto, as estimativas são melhoradas significativamente quando cuidadosamente limitadas por variáveis geológicas \cite{rossi2013mineral}. A \autoref{dom_def} mostra uma ilustração esquemática da definição dos domínios em um banco de dados.
+
+\begin{figure}[H]
+	\centering
+	\caption{\label{dom_def}Ilustração esquematizando adefinição dos domínios estacionários.}
+	\includegraphics[width=0.8\textwidth]{capitulo_1/imagens/dom_def}
+\end{figure}
 
 A definição de diferentes domínios de estimativas, ou zonas estacionárias no interior do depósito, é necessária para a inferência geoestatística. Geralmente, o método usado na construção dos modelos numéricos de teores \cite{mclennanstationarity}. Isto é, os teores em cada domínio estacionário pertencem a populações estatísticas distintas, são caracterizados através de modelos de distribuição e de covariância específicos e devem ser modelados como funções aleatórias estacionárias diferentes. \cite{journel1978mining}. 
 
@@ -23,14 +29,20 @@ Uma função aleatória estacionária é uma representação probabilística de 
 
 Os domínios estacionários não devem ser muito pequenos, dessa forma não incluiriam dados suficientes para descrição e inferência estatística confiável, e nem muito grandes, já que os dados, provavelmente, poderiam ser subdivididos em grupos geologicamente mais homogêneos. A definição adequada dos domínios estacionários é uma etapa importante na avaliação de recursos/reservas, a mistura de populações produz estimativas sub ótimas que superestimam ou subestimam teores e tonelagens. Além disso, nenhuma técnica geoestatística pode compensar uma definição de estacionariedade inadequada \cite{rossi2013mineral}.
 
-Uma vez que os domínios estacionários tenham sido definidos, um modelo tridimensional com os limites de cada função aleatória estacionária deve ser construído: o modelo geológico. É necessário identificar a "jurisdição espacial"\ de cada função aleatória estacionária. A etapa de interpretação e modelagem geológica compreende a definição dos domínios estacionários e a criação do modelo geológico tridimensional que forma o alicerce para todo o trabalho de estimativa subsequente. Muitas vezes, o modelo geológico é o fator de maior importância na estimativas das tonelagens mineralizadas \cite{rossi2013mineral}.
+Uma vez que os domínios estacionários tenham sido definidos, um modelo tridimensional com os limites de cada função aleatória estacionária deve ser construído: o modelo geológico. É necessário identificar a "jurisdição espacial"\ de cada função aleatória estacionária. A etapa de interpretação e modelagem geológica compreende a definição dos domínios estacionários e a criação do modelo geológico tridimensional que forma o alicerce para todo o trabalho de estimativa subsequente. Muitas vezes, o modelo geológico é o fator de maior importância na estimativas das tonelagens mineralizadas \cite{rossi2013mineral}. A \autoref{ilust_mpod} mostra uma ilustração esquemática do modelo geológico para o exemplo da \autoref{dom_def}.
+
+\begin{figure}[H]
+	\centering
+	\caption{\label{ilust_mpod}Ilustração esquematizando a modelagem geológica.}
+	\includegraphics[width=0.6\textwidth]{capitulo_1/imagens/mapa_geomode_det}
+\end{figure}
 
 A abordagem tradicional para a criação de modelos geológicos tridimensionais é através da triangulação de polilinhas \footnote{Em computação gráfica: uma linha composta por vários segmentos, usada para compor imagens na tela \cite{oxfordonlinedictionary}.} (\textit{strings}) gerando sólidos que representam os corpos minerais. As polilinhas são digitalizadas manualmente em seções deslocadas, a partir dos dados de sondagem e conhecimento geológico prévio, por um geomodelador. As seções são unidas por linhas guias, que demarcam a conectividade entre as seções digitalizadas para triangulação adequada dos sólidos. Esse procedimento é referido como modelagem geológica explícita, já que os limites entre os diferentes domínios são definidos explicitamente por coordenadas (x,y,z) que posicionam a "colcha de retalhos"\ de triângulos \cite{mclennan2006boundsim,cowan2003practical}. A \autoref{explicitmodeling} ilustra a metodologia explícita para um típico depósito de veio.
 
 \begin{figure}[H]
     \centering
 	\caption{\label{explicitmodeling}Ilustração esquematizando a modelagem geológica explícita usando polilinhas e linhas guias.}
-	\includegraphics[width=0.6\textwidth]{capitulo_1/imagens/explicitmodeling}
+	\includegraphics[width=0.8\textwidth]{capitulo_1/imagens/explicitmodeling}
 	\legend{Modificado de \citeonline{mclennan2006boundsim}}
 \end{figure}
 
@@ -47,8 +59,7 @@ Em virtude da onerosidade em construir múltiplos modelos geológicos explícito
 \begin{figure}[H]
     \centering
 	\caption{\label{incerteza_limites}Ilustração esquemática destacando a incerteza na localização do limite entre os domínios azul e vermelho, entre os dados amostrais.}
-	\includegraphics[width=0.6\textwidth]{capitulo_1/imagens/incerteza_limites}
-	\legend{Modificado de \citeonline{caceres2011stochastic}}
+	\includegraphics[width=0.6\textwidth]{capitulo_1/imagens/mapa_geomode_stoc}
 \end{figure}
 
 Em muitos casos, a incerteza do modelo geológico pode ser uma fonte de incerteza crucial. Em depósitos de veio de ouro, por exemplo, o volume mineralizado é um indicador econômico vital para o gerenciamento do projeto. Ignorar a incerteza volumétrica, considerando apenas um único modelo geológico explícito, pode ser ser devastador para o empreendimento. A incerteza associada ao modelo geológico deve ser avaliada.
