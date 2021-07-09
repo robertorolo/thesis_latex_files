@@ -642,7 +642,7 @@ Onde $(n+1)$ denota a condicionalidade aos n valores $Z(u_{\alpha})$ e também �
 
 A ideia aqui é trocar a modelagem e tomada do valor aleatório do ccdf bivariado pela tomada sequencial de valores em dois ccdfs univariados, que são mais facilmente inferidos, daí o nome simulação sequencial.
 
-Esse princípio pode ser generalizado para mais de dois lugares. Aplicando o axioma de Bayes recursivamente, o ccdf N-variado pode ser escrito como o produto de N ccdfs univariados da seguinte forma \cite{goovaerts1997geostatistics}:
+Esse princípio pode ser generalizado para mais de duas localidades. Aplicando o axioma de Bayes recursivamente, o ccdf N-variado pode ser escrito como o produto de N ccdfs univariados da seguinte forma \cite{goovaerts1997geostatistics}:
 
 \begin{enumerate}
 	\item O ccdf no primeiro lugar $(u'_{1})$ é modelado, condicionado aos n dados originais $z(u_{\alpha})$;
@@ -658,7 +658,7 @@ Esse processo garante a reprodução do modelo de covariância.
 
 Para simular variáveis categóricas os ccdfs devem ser construídos a partir da krigagem dos indicadores apresentada na \autoref{ik}.
 
-\subsubsection{Simulação geostatística multi-ponto}
+\subsubsection{Simulação geostatística multi-ponto (MPS)}
 
 A simulação sequencial dos indicadores constrói a função de distribuição acumulada $F(u;z|(n))$ a partir da krigagem dos indicadores $i(u_{\alpha}, s_{k})$ em qualquer localização u não medida $I(u;s_{k})$.
 
@@ -685,9 +685,13 @@ O processo de varredura da imagem de treinamento é realizado a partir de um tem
 
 Entretanto, como este método exige que a varredura da imagem de treinamento seja realizada para cada nó do grid não amostrado durante a simulação, é demandado de um grande esforço computacional. Como alternativa, \citeonline{strebelle} propôs varrer a imagem de treinamento uma única vez, na qual os padrões da TI são armazenados em um arquivo, denominado árvore de busca ou \textit{search tree}, que possibilita o acesso as informações para cada nó não amostrado simulado \cite{amarante_dissertacao}.
 
+\citeonline{boucher2014simulation} declaram que aplicar MPS a objetos não repetitivos e de grande volume como são os deposites minerais é difícil porque a maioria dos algoritmos de MPS são baseados em repetições de padrões para a simulação. Por esse motivo, os autores propõe um algoritmo focado em reproduzir padrões dos contatos entre as litologias. O algoritmo aprende os padrões a partir dos contatos interpretados por um geomodelador. Uma zona de incerteza ao redor dos contatos deve ser definida.
+
 \subsubsection{Métodos Gaussianos truncados}
 
-Há ainda a família dos métodos Gaussianos truncados. Esses métodos são aplicados, geralmente, quando as litologias ocorrem em uma ordem fixa, como em sequências estratigráficas por exemplo. A ideia básica por trás da simulação Gaussiana truncada \cite{matheron1987conditional} é simular uma variável Gaussiana em cada célula do \textit{grid} e então aplicar uma regra de truncagem para converter os valores Gaussianos contínuos em valores categóricos.
+Há ainda a família dos métodos Gaussianos truncados. Esses métodos são aplicados, geralmente, quando as litologias ocorrem em uma ordem fixa, como em sequências estratigráficas por exemplo. A ideia básica por trás da simulação Gaussiana truncada \cite{matheron1987conditional} é simular uma variável Gaussiana (contínua) em cada célula do \textit{grid} e então aplicar uma regra de truncagem para converter os valores Gaussianos contínuos em valores categóricos.
+
+A regra de truncagem é uma pare importante dos métodos Gaussianos truncados já que controla os contatos entre as diferentes litologias, suas transições e proporções. A definição da regra de truncagem é geralmente baseada nas probabilidades de transição observadas nos dados e em modelos geológicos conceituais \cite{silva2018enhanced}. Entretanto, diversas técnicas foram propostas para a definição das regras de truncagem. 
 
 Em muitos casos, a abordagem Gaussiana truncada se mostra bastante restritiva. Por esse motivo, a técnica pode ser estendida para duas ou mais variáveis Gaussianas. Essa adaptação é chamada de simulação pluri-Gaussiana truncada \cite{armstrong2011plurigaussian}.
 
@@ -879,7 +883,7 @@ Uma curva como a da \autoref{c_calib_grafico} é construída. São escolhidos N 
 
 Após o valor de C ser selecionado, as distâncias assinaladas calculadas para cada amostra devem ser modificadas a partir da equação \autoref{C_dist}. As distâncias modificadas devem então ser interpoladas, utilizando o mesmo variograma das distâncias originais, para todos os nós do \textit{grid}, e a truncagem das distâncias modificadas estimadas entre -C e +C define a zona de incerteza.
 
-Valores para a função distância são simulados uniformemente entre -C e +C. Para isso, é necessário realizar uma simulação Gaussiana não condicional. Um dos algoritmos comumente usados é a simulação sequencial Gaussiana (\autoref{algo:usgs}). O variograma utilizado na simulação não condicional pode ser o mesmo das distâncias assinaladas. O alcance do variograma determina a natureza do contato entre os domínios, menores alcances geram contatos mais rugosos enquanto maiores alcances, contatos suaves. O efeito pepita controla a inter conectividade entre o domínio.
+Valores para a função distância são simulados uniformemente entre -C e +C. Para isso, é necessário realizar uma simulação Gaussiana não condicional. Um dos algoritmos comumente usados é a simulação sequencial Gaussiana (\autoref{algo:usgs}). A simulação sequencial Gaussiana não condicional gera valores Gaussianos (contínuos) que reproduzem o variograma informado. O variograma utilizado na simulação não condicional pode ser o mesmo das distâncias assinaladas. O alcance do variograma determina a natureza do contato entre os domínios, menores alcances geram contatos mais rugosos enquanto maiores alcances, contatos suaves. O efeito pepita controla a inter conectividade entre o domínio.
 
 \begin{algorithm}
 \SetAlgoLined
