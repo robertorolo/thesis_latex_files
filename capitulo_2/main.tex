@@ -64,7 +64,7 @@ Modelos geológicos implícitos são criados a partir de dados esparsos, geralme
 
 Diferentes tipos de dados amostrais podem ser usados para derivar diferentes funções volume na modelagem implícita. \citeonline{mallet2004space} propõe uma função volumétrica cronológica, levando em consideração a posição estratigráfica das diferentes unidades geológicas, enquanto \citeonline{lajaunie1997foliation, chiles2004modelling, calcagno2008geological} usam co-krigagem de incrementos em um campo potencial, omitindo a função volume. O procedimento não é simples já que a covariância do campo potencial é particularmente difícil de inferir uma vez que não há \textit{hard data} de campo potencial disponível.
 
-A função volume mais comumente utilizada é a função distância assinalada \cite{osherlevelsetmethods}. A aplicação dessa metodologia é encontrada por toda a literatura de interpolação de dados esparsos, uma das aplicações é a reconstrução de superfícies a partir de escaneamento. Na modelagem geológica, a metodologia é competente em capturar a geometria e extensão de corpos geológicos e tem sido aplicada com sucesso há mais de uma década na exploração mineral tendo ganhado espaço em diferentes \textit{softwares} comerciais. Para bancos de dados pontuais, que representam a posição  de diferentes litologias no espaço, o uso das funções distância assinaladas torna os processos de interpretação, cálculo, modelagem, modificação do modelo de acordo com a interpretação dos geomodeladores e avaliação da incerteza diretos e rápidos. Além disso, informações a respeito da orientação das unidades geológicas (dados estruturais) podem ser imputada como restrição na criação do modelo geológico \cite{martin2017implicitmodeling}.
+A função volume mais comumente utilizada é a função distância assinalada \cite{osherlevelsetmethods}. A aplicação dessa metodologia é encontrada por toda a literatura de interpolação de dados geoposicionados, uma das aplicações é a reconstrução de superfícies a partir de escaneamento. Na modelagem geológica, a metodologia é competente em capturar a geometria e extensão de corpos geológicos e tem sido aplicada com sucesso há mais de uma década na exploração mineral tendo ganhado espaço em diferentes \textit{softwares} comerciais. Para bancos de dados pontuais, que representam a posição  de diferentes litologias no espaço, o uso das funções distância assinaladas torna os processos de interpretação, cálculo, modelagem, modificação do modelo de acordo com a interpretação dos geomodeladores e avaliação da incerteza diretos e rápidos. Além disso, informações a respeito da orientação das unidades geológicas (dados estruturais) podem ser imputada como restrição na criação do modelo geológico \cite{martin2017implicitmodeling}.
 
 As próximas seções trazem uma revisão bibliográfica extensiva da modelagem geológica com funções distância assinaladas.
 
@@ -396,7 +396,7 @@ Na presença de múltiplos domínios, as isosuperfícies ou isolinhas, devem ser
 
 \subsubsection{Adaptação para múltiplas categorias}
 
-\citeonline{silvaanddeutschccgmodeling} propuseram, uma adaptação para o método com o objetivo de modelar múltiplos domínios geológicos simultaneamente, de forma similar ao caso binário.
+\citeonline{silva2015enhanced} propuseram, uma adaptação para o método com o objetivo de modelar múltiplos domínios geológicos simultaneamente, de forma similar ao caso binário.
 
 Se existirem $K$ múltiplos domínios no depósito mineral, para cada ponto amostral ${z(u_\alpha),\alpha=1,...,n}$, um vetor de indicadores de $K$ elementos é codificado de acordo com a \autoref{eq_mult_ind}.
 
@@ -695,7 +695,7 @@ A regra de truncagem é uma pare importante dos métodos Gaussianos truncados j�
 
 Em muitos casos, a abordagem Gaussiana truncada se mostra bastante restritiva. Por esse motivo, a técnica pode ser estendida para duas ou mais variáveis Gaussianas. Essa adaptação é chamada de simulação pluri-Gaussiana truncada \cite{armstrong2011plurigaussian}.
 
-O conceito de usar a regra de truncagem em mais de uma dimensão para transformar múltiplas variáveis Gaussianas em uma única variável categórica é limitada, já que a interpretação geológica se degrada quando um número maior de categorias e/ou variáveis gaussianas são consideradas devido à complexidade do modelo.
+O conceito de usar a regra de truncagem em mais de uma dimensão para transformar múltiplas variáveis Gaussianas em uma única variável categórica é limitada, já que a interpretação geológica se degrada quando um número maior de categorias e/ou variáveis Gaussianas são consideradas devido à complexidade do modelo.
 
 Por isso, uma nova adaptação foi desenvolvida: \citeonline{silva2019multivariate} propuseram a simulação pluri-Gaussiana truncada hierárquica. Esse método utiliza uma estrutura em árvore para definir diferentes regras de truncagem em uma única dimensão. Isso facilita a definição do mapeamento entre espaço contínuo (Gaussiano) e categórico, tornando possível a utilização eficiente de qualquer número de variáveis Gaussianas para a modelagem de uma variável categórica.
 
@@ -709,7 +709,7 @@ Também existem na literatura métodos de avaliação de incerteza baseados em d
 
 \subsubsubsection{Avaliação heurística da incerteza}\label{heuristic}
 
-O método mais simples de avaliação de incerteza em modelos geológicos implícitos, proposto por \citeonline{silvaanddeutschccgmodeling}, consiste em transformar distâncias estimadas em probabilidades via \textit{softmax transformation}. Técnica amplamente usada em métodos de classificação para múltiplas classes \cite{mccullaghgeneralizedlinear}. A ideia é transformar as distâncias estimadas em probabilidades a partir da \autoref{eq_softmax}. Os valores transformados encontram-se entre zero e um e sua soma deve ser igual a um, para cada bloco em que as distâncias assinaladas forem estimadas.
+O método mais simples de avaliação de incerteza em modelos geológicos implícitos, proposto por \citeonline{silva2015enhanced}, consiste em transformar distâncias estimadas em probabilidades via \textit{softmax transformation}. Técnica amplamente usada em métodos de classificação para múltiplas classes \cite{mccullaghgeneralizedlinear}. A ideia é transformar as distâncias estimadas em probabilidades a partir da \autoref{eq_softmax}. Os valores transformados encontram-se entre zero e um e sua soma deve ser igual a um, para cada bloco em que as distâncias assinaladas forem estimadas.
 
 \begin{equation}
 	P(i(u)=k)=\frac{e^\frac{-d^*_k(u)}{\omega}}{\sum_{k'=1}^{K}e^\frac{-d^*_k(u)}{\omega}}
@@ -818,7 +818,7 @@ O método é baseado em múltiplas realizações do modelo geológico, então, s
 \item criação do modelo com base na menor distância interpolada;
 \item Criação da zona de incerteza;
 \item Transformação Gaussiana das distâncias;
-\item Variografia das distâncias no espaço gaussiano para todas as categorias;
+\item Variografia das distâncias no espaço Gaussiano para todas as categorias;
 \item Geração de múltiplos modelos baseados na menor distância simulada;
 \item Validação e pós processamento das realizações.
 \end{enumerate}
